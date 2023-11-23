@@ -11,7 +11,7 @@ module.exports = {
     browser: true,
   },
   parseOptions: {
-    ecmaVersion: 2018,
+    ecmaVersion: 2021
   },
   extends: "eslint:recommended",
 };
