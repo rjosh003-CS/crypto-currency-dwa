@@ -1,6 +1,6 @@
 // adding modules
 const express = require("express");
-const path = require('path');
+const path = require("path");
 const env = require("dotenv");
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
@@ -22,19 +22,12 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 // Set up static files
-app.use(express.static(__dirname + '/mvc/view'));
+app.use(express.static(path.join(__dirname, "/mvc/view")));
 
 // importing routes
 const mainRoutes = require("./routes/main"); // updated import statement
 // using the routes in our application
 app.use("/", mainRoutes);
-
-/*
-// routes
-app.get("/", (req, res) => {
-  res.render("index", { title: "Home" });
-});
-*/
 
 // starting server
 // server listening at port

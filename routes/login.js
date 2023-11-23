@@ -6,13 +6,13 @@ const { login } = require("../mvc/controller/main");
 // Login page route
 router
   .route("/")
-//   .get(login, () => {})
-  .get(()=> {
-        res.render("login", {
-            title: "Login",
-            message: "Login page",
-            name: "Login page",
-        })
+  //   .get(login, () => {})
+  .get((req, res) => {
+    res.render("login", {
+      title: "Login",
+      message: "Login page",
+      name: "Login page"
+    });
   })
   .post(() => {});
 

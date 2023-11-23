@@ -7,13 +7,15 @@ const { register } = require("../mvc/controller/main");
 router
   .route("/")
   //   .get(register, () => {})
-  .get(() => {
+  .get((req, res) => {
     res.render("register", {
       title: "Register",
       message: "Register page",
-      name: "Register page",
+      name: "Register page"
     });
   })
-  .post(() => {});
+  .post((req, res) => {
+    //! todo: write code here
+  });
 
 module.exports = router;
