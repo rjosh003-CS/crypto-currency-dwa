@@ -5,7 +5,7 @@ const { about } = require("../mvc/controller/main");
 
 // About page route
 router
-  .route("/about")
+  .route("/")
   // @method: GET
   // @route: /about
   // @description: get method for about page
@@ -21,4 +21,4 @@ router
   // @description: post method for the about page
   .post(() => {});
 
-module.exports = { router };
+module.exports = router;

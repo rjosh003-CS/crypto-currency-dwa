@@ -5,7 +5,7 @@ const { login } = require("../mvc/controller/main");
 
 // Login page route
 router
-  .route("/login")
+  .route("/")
 //   .get(login, () => {})
   .get(()=> {
         res.render("login", {
@@ -16,4 +16,4 @@ router
   })
   .post(() => {});
 
-module.exports = { router };
+module.exports =  router ;

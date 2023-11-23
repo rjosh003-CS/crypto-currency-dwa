@@ -5,15 +5,15 @@ const { register } = require("../mvc/controller/main");
 
 // Register page route
 router
-  .route("/register")
-//   .get(register, () => {})
-  .get(()=> {
-        res.render("register", {
-            title: "Register",
-            message: "Register page",
-            name: "Register page",
-        })
+  .route("/")
+  //   .get(register, () => {})
+  .get(() => {
+    res.render("register", {
+      title: "Register",
+      message: "Register page",
+      name: "Register page",
+    });
   })
   .post(() => {});
 
-module.exports = { router };
+module.exports = router;
