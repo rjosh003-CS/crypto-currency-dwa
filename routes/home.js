@@ -9,11 +9,13 @@ router
 //   .get(home, () => {})¿
   .get( (req, res, next) => {
              res.render("home", {
-            title: "Home",
-            message: "Home page",
-            name: "Home page",
-        })
+              title: "Home",
+              message: "Home page",
+              name: "Home page"
+            });
     })
-  .post(() => {});
+  .post((req, res) => {
+    return res.status(200).send("home");
+  });
 
 module.exports = router ;
