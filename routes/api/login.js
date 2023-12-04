@@ -1,9 +1,9 @@
 
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
 // POST route for login
-router.post('/', (req, res) => {
+router.post("/", (req, res) => {
   // Assuming you have a user object with username and password properties
   const user = {
     username: req.body.username,
@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
   // You can perform any necessary checks or validations
 
   // Sending the response in JSON format
-  res.json({ message: 'Login successful', user });
+  res.json({ message: "Login successful", user });
 });
 
 module.exports = router;

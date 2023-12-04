@@ -13,12 +13,14 @@ router
     res.render("about", {
       title: "About",
       message: "About page",
-      name: "About page",
+      name: "About page"
     });
   })
   // @method: POST
   // @route:    /about
   // @description: post method for the about page
-  .post(() => {});
+  .post((req, res) => {
+    return res.status(200).send("about page")
+  });
 
 module.exports = router;
