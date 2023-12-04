@@ -1,5 +1,8 @@
 # mac related file
 .DS_Store
 
+# env file
+.env
+
 # folder
 node_modules/
