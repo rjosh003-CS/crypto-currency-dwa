@@ -14,7 +14,7 @@ env.config();
 // setting up server variables
 const port = process.env.PORT || 8000;
 
-//  setting up view engine
+// setting up view engine
 app.set("view engine", "ejs");
 
 // middleware to parse body of request into json object
@@ -32,5 +32,5 @@ app.use("/", mainRoutes);
 // starting server
 // server listening at port
 app.listen(port, () => {
-  console.log(`Server listening at port: ${port}...`);
+ console.log(`Server listening at port: ${port}...`);
 });

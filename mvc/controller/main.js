@@ -1,33 +1,39 @@
-// controller for home route
+// Controller for home route
 const home = (req, res) => {
   return (req, res) => {
-    res.send("home");
-    // res.render("home");
+     res.send("home");
+     // res.render("home");
   };
-};
-
-// controller for about route
-const about = (req, res) => {
+ };
+ 
+ // Controller for about route
+ const about = (req, res) => {
   return (req, res) => {
-    res.send("about");
-    // res.render("about");
+     res.send("about");
+     // res.render("about");
   };
-};
-
-// controller for register route
-const register = (req, res) => {
+ };
+ 
+ // Controller for register route
+ const register = (req, res) => {
   return (req, res) => {
-    res.send("register");
-    // res.render("register");
+     res.send("register");
+     // res.render("register");
   };
-};
-
-// controller for login route
-const login = (req, res) => {
+ };
+ 
+ // Controller for login route
+ const login = (req, res) => {
   return (req, res) => {
-    res.send("login");
-    // res.render("login");
+     res.send("login");
+     // res.render("login");
   };
-};
-
-exports.modules = {home, about, register, login};
+ };
+ 
+ // Exporting all controllers
+ exports.modules = {
+  home,
+  about,
+  register,
+  login
+ };
