@@ -12,7 +12,7 @@ const app = express();
 env.config();
 
 // setting up server variables
-const port = process.env.port;
+const port = process.env.PORT || 8000;
 
 //  setting up view engine
 app.set("view engine", "ejs");
@@ -34,4 +34,3 @@ app.use("/", mainRoutes);
 app.listen(port, () => {
   console.log(`Server listening at port: ${port}...`);
 });
-//??
