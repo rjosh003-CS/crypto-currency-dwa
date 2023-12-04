@@ -39,6 +39,15 @@ const userSchema = new mongoose.Schema({
  password: {
     type: String,
     required: true, // password is a required field
+    validate: {
+      validator: function(value) {
+        // Password validation logic
+        // Example: Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+        return regex.test(value);
+      },
+      message: "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit",
+    },
  },
  email: {
     type: String,
@@ -62,8 +71,11 @@ const userSchema = new mongoose.Schema({
  },
 });
 
+
+
 // creating a mongoose model for user with the defined schema
 const User = mongoose.model("User", userSchema);
 
 // exporting the user model for use in other modules
 module.exports = User;
+
