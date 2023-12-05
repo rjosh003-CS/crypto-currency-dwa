@@ -4,24 +4,25 @@ const router = require("express").Router();
 const { about } = require("../mvc/controller/main");
 
 // About page route
-router
-  .route("/")
-  // @method: GET
-  // @route: /about
-  // @description: get method for about page
-  .get((req, res)=> {
-    console.log(req.url);
-    res.render("about", {
-      title: "About",
-      message: "About page",
-      name: "About page"
-    });
-  })
+
+// @route: /about
+router.route("/");
+
+// @method: GET
+// @description: get method for about page
+router.get((req, res, next) => {
+  console.log(req.url);
+  // res.render("about", {
+  //   title: "About",
+  //   message: "About page",
+  //   name: "About page"
+  // });
+}, about);
+
   // @method: POST
-  // @route:    /about
   // @description: post method for the about page
-  .post((req, res) => {
-    return res.status(200).send("about page");
-  });
+router.post((req, res) => {
+  return res.status(200).send("about page");
+});
 
 module.exports = router;

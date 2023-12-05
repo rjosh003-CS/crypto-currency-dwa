@@ -13,8 +13,8 @@ const apiRegisterRoute = require("./api/register");
 
 // exporting routes
 // normal web routes
-router.use("/about", aboutRoute);
 router.use("/", homeRoute);
+router.use("/about", aboutRoute);
 router.use("/register", registerRoute);
 router.use("/login", loginRoute);
 
