@@ -11,9 +11,11 @@ router
     res.render("login", {
       title: "Login",
       message: "Login page",
-      name: "Login page"
+      name: "Login page",
     });
   })
-  .post(() => {});
+  .post((req, res) => {
+    res.send("login page");
+  });
 
 module.exports =  router ;

@@ -10,6 +10,7 @@ router
   // @route: /about
   // @description: get method for about page
   .get((req, res)=> {
+    console.log(req.url);
     res.render("about", {
       title: "About",
       message: "About page",
@@ -20,7 +21,7 @@ router
   // @route:    /about
   // @description: post method for the about page
   .post((req, res) => {
-    return res.status(200).send("about page")
+    return res.status(200).send("about page");
   });
 
 module.exports = router;

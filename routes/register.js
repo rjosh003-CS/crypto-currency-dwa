@@ -15,7 +15,7 @@ router
     });
   })
   .post((req, res) => {
-    //! todo: write code here
+    res.send("register page");
   });
 
 module.exports = router;
