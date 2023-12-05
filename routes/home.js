@@ -16,6 +16,7 @@ router
     next();
   }, home)
   .post((req, res) => {
+    console.log(req.baseUrl);
     return res.status(200).send("home");
   });
 

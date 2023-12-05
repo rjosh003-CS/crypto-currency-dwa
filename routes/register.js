@@ -22,6 +22,7 @@ router
   // @method: POST
   // @description: post method for the register page
   .post((req, res) => {
+    console.log(req.baseUrl);
     res.send("register page");
   });
 
