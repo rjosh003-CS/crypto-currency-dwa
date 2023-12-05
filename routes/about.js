@@ -17,6 +17,7 @@ router.get((req, res, next) => {
   //   message: "About page",
   //   name: "About page"
   // });
+  next();
 }, about);
 
   // @method: POST
