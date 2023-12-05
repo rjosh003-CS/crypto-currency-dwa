@@ -71,6 +71,7 @@ GitHub
 .env file content
 
 ```bash
+# .env file
 #-----------------begin------------------------
 
 PORT = 8000
