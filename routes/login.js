@@ -4,19 +4,25 @@ const router = require("express").Router();
 const { login } = require("../mvc/controller/main");
 
 // Login page route
-router.route("/");
+// @route: "/login"
+router
+  .route("/")
 
-router.get((req, res, next) => {
-  // res.render("login", {
-  //   title: "Login",
-  //   message: "Login page",
-  //   name: "Login page"
-  // });
-  next();
-}, login);
+  // @method: GET
+  // @description: get method for login page
+  .get((req, res, next) => {
+    // res.render("login", {
+    //   title: "Login",
+    //   message: "Login page",
+    //   name: "Login page"
+    // });
+    next();
+  }, login)
 
-router.post((req, res) => {
-  res.send("login page");
-});
+  // @method: POST
+  // @description: post method for the login page
+  .post((req, res) => {
+    res.send("login page");
+  });
 
 module.exports =  router ;

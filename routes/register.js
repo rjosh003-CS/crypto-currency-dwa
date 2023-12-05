@@ -4,23 +4,24 @@ const router = require("express").Router();
 const { register } = require("../mvc/controller/main");
 
 // Register page route
-// @route: "/"
-router.route("/");
+// @route: "/register"
+router
+  .route("/")
 
-// @method: GET
-// @description: get method for register page
-  router.get((req, res, next) => {
+  // @method: GET
+  // @description: get method for register page
+  .get((req, res, next) => {
     // res.render("register", {
     //   title: "Register",
     //   message: "Register page",
     //   name: "Register page"
     // });
     next();
-  }, register);
+  }, register)
 
   // @method: POST
   // @description: post method for the register page
-  router.post((req, res) => {
+  .post((req, res) => {
     res.send("register page");
   });
 
