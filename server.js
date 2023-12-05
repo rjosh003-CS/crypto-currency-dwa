@@ -1,3 +1,20 @@
+/* inside the .env file
+
+#-----------------begin------------------------
+
+PORT = 8000
+
+#  Google api
+CLIENT_ID = <YOUR CLIENT_ID>
+CLIENT_SECRET = <YOUR CLIENT_SECRET>
+
+# mongodb URL
+MONGO_URL = <mongodb_url>
+
+#-----------------end of file--------------------
+
+*/
+
 // adding modules
 const express = require("express");
 const path = require("path");
@@ -32,5 +49,5 @@ app.use("/", mainRoutes);
 // starting server
 // server listening at port
 app.listen(port, () => {
- console.log(`Server listening at port: ${port}...`);
+  console.log(`Server listening at port: ${port}...`);
 });

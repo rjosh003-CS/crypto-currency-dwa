@@ -65,3 +65,22 @@ GitHub for hosting the project.
 
 Rohit Joshi \
 GitHub
+
+## Appendix
+
+.env file content
+
+```bash
+#-----------------begin------------------------
+
+PORT = 8000
+
+#  Google api
+CLIENT_ID = <YOUR CLIENT_ID>
+CLIENT_SECRET = <YOUR CLIENT_SECRET>
+
+# mongodb URL
+MONGO_URL = <mongodb_url>
+
+#-----------------end of file--------------------
+```
