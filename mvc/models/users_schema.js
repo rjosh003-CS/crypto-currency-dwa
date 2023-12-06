@@ -29,18 +29,35 @@ const subscriptionSchema = mongoose.Schema({
  }
 });
 
+// defining the schema for name
+const nameSchema = mongoose.Schema({
+  firstname: {
+    type: String,
+    required: true // firstname is a required field
+  },
+  middlename: {
+    type: String,
+    required: false // middlename is a required field
+  },
+  lastname: {
+    type: String,
+    required: true // lastname is a required field
+  }
+});
+
 // defining the schema for user
 const userSchema = new mongoose.Schema({
- username: {
+  name: nameSchema,
+  username: {
     type: String,
     required: true, // username is a required field
     unique: true // username must be unique
- },
- password: {
+  },
+  password: {
     type: String,
     required: true, // password is a required field
     validate: {
-      validator: function(value) {
+      validator: function (value) {
         // Password validation logic
         // Example: Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit
         const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
@@ -48,27 +65,27 @@ const userSchema = new mongoose.Schema({
       },
       message: "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit"
     }
- },
- email: {
+  },
+  email: {
     type: String,
     required: true, // email is a required field
     unique: true // email must be unique
- },
+  },
 
- role: roleSchema, // defining the role schema within the user schema
+  role: roleSchema, // defining the role schema within the user schema
 
- subscription: subscriptionSchema, // defining the subscription schema within the user schema
+  subscription: subscriptionSchema, // defining the subscription schema within the user schema
 
- profile_pic_url: {
+  profile_pic_url: {
     type: String
- },
- created_at: {
+   },
+  created_at: {
     type: Date,
     default: () => Date.now() // setting the default value for created_at as the current date and time
- },
- updated_at: {
+  },
+  updated_at: {
     type: Date
- }
+  }
 });
 
 
