@@ -41,7 +41,7 @@ const nameSchema = mongoose.Schema({
   },
   lastname: {
     type: String,
-    required: true // lastname is a required field
+    required: false // lastname is a required field
   }
 });
 
@@ -77,7 +77,8 @@ const userSchema = new mongoose.Schema({
   subscription: subscriptionSchema, // defining the subscription schema within the user schema
 
   profile_pic_url: {
-    type: String
+    type: String,
+    required: false
    },
   created_at: {
     type: Date,
@@ -91,8 +92,7 @@ const userSchema = new mongoose.Schema({
 
 
 // creating a mongoose model for user with the defined schema
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("Users", userSchema);
 
 // exporting the user model for use in other modules
 module.exports = User;
-
