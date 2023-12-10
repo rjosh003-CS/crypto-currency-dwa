@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 // importing controllers
-const { about } = require("../mvc/controller/main");
+const { about } = require("../mvc/controller/main_controller");
 
 // About page route
 
@@ -12,19 +12,15 @@ router
   // @method: GET
   // @description: get method for about page
   .get((req, res, next) => {
-    console.log(req.url);
-    // res.render("about", {
-    //   title: "About",
-    //   message: "About page",
-    //   name: "About page"
-    // });
+    // console.log(req.url);
+
     next();
   }, about)
 
   // @method: POST
   // @description: post method for the about page
   .post((req, res) => {
-    console.log(req.baseUrl);
+    // console.log(req.baseUrl);
     return res.status(200).send("about page");
   });
 

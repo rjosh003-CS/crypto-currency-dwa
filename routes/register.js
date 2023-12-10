@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 // importing controllers
-const { register } = require("../mvc/controller/main");
+const { register } = require("../mvc/controller/main_controller");
 
 // Register page route
 // @route: "/register"
@@ -22,7 +22,6 @@ router
   // @method: POST
   // @description: post method for the register page
   .post((req, res) => {
-    console.log(req.baseUrl);
     res.send("register page");
   });
 
