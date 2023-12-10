@@ -1,0 +1,86 @@
+const axios = require("axios");
+const env = require("dotenv");
+
+env.config();
+
+const port = process.env.PORT || 8000;
+const login_url = `https://localhost:${port}/api/login`;
+const register_url = `https://localhost:${port}/api/register`;
+const delete_url = `https://localhost:${port}/api/delete_user`;
+const update_url = `https://localhost:${port}/api/users`;
+
+// Function to perform the actual API call using Axios
+const loginUser = async (username, password) => {
+  try {
+    const response = await axios.post(
+      login_url,
+      { username, password },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
+// Common function to register user data
+const registerUser = async (userData) => {
+  try {
+    const response = await axios.post(register_url, userData);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.error);
+  }
+};
+
+const deleteUser = async (user_id) => {
+  try {
+    const response = await axios.post(
+      delete_url,
+      { user_id },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
+// Function to update user details
+const updateUser = async () => {
+  const userId = "123";
+  const userDetails = {
+    name: "John Doe",
+    email: "john.doe@example.com",
+  };
+
+  try {
+    const response = await axios.post(update_url + `/${userId}`, userDetails);
+    return response.data;
+  } catch (error) {
+    // console.error(error);
+    throw error;
+  }
+};
+
+module.exports = {
+  // urls
+  login_url,
+  register_url,
+  update_url,
+  delete_url,
+
+  // functions
+  loginUser,
+  registerUser,
+  updateUser,
+  deleteUser,
+};
