@@ -1,18 +1,24 @@
+const dotenv = require("dotenv");
+const { parsed: envVars } = dotenv.config();
+const dotenvExpand = require("dotenv-expand");
+
+dotenvExpand.expand({ parsed: envVars });
+
 const passport = require("passport");
-const env = require("env");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
-const port = env.port;
-const CLIENT_ID = env.CLIENT_ID;
-const CLIENT_SECRET = env.CLIENT_SECRET;
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const GOOGLE_CALLBACK_URL = process.env.CALL_BACK_URL;
 
 // Configure Google authentication
 passport.use(
+  GoogleStrategy,
   new GoogleStrategy(
     {
       clientID: CLIENT_ID,
       clientSecret: CLIENT_SECRET,
-      callbackURL: `http://localhost:${port}/auth/google/callback`
+      callbackURL: GOOGLE_CALLBACK_URL
     },
     (accessToken, refreshToken, profile, done) => {
       // Handle user authentication logic here
@@ -24,17 +30,5 @@ passport.use(
     }
   )
 );
-
-// Serialize user
-passport.serializeUser((user, done) => {
-  // Serialize the user object and store it in the session
-  done(null, user);
-});
-
-// Deserialize user
-passport.deserializeUser((user, done) => {
-  // Retrieve the user object from the session
-  done(null, user);
-});
 
 module.exports = passport;
