@@ -10,20 +10,7 @@ router
 
   // @method: GET
   // @description: get method for register page
-  .get((req, res, next) => {
-    // res.render("register", {
-    //   title: "Register",
-    //   message: "Register page",
-    //   name: "Register page"
-    // });
-    next();
-  }, register)
-
-  // @method: POST
-  // @description: post method for the register page
-  .post((req, res) => {
-    res.send("register page");
-  });
+  .get(register);
 
 // exporitng the router
 module.exports = router;
