@@ -1,8 +1,12 @@
 const createApp = require("./app");
-const {database, store} = require("./database");
+const { connectToDatabase, createSessionStore } = require("./database");
 
 // creating app
-const app = createApp(database,store);
+const store = createSessionStore();
+const app = createApp(store);
+
+// connecting to database
+connectToDatabase();
 
 // starting server
 // server listening at port

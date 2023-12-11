@@ -27,11 +27,9 @@ const express = require("express");
 // session related imports
 const session = require("express-session");
 
-const createApp = (database, store) => {
+const createApp = (sessionStore) => {
   // setting up express
   const app = express();
-
-  database();
 
   // Setup express-session middleware
   app.use(
@@ -39,7 +37,7 @@ const createApp = (database, store) => {
       secret: process.env.SESSION_SECRET, // Change this to a random secret key
       resave: false,
       saveUninitialized: true,
-      store: store, // Use the MongoDB store for sessions
+      store: sessionStore, // Use the MongoDB store for sessions
       cookie: {
         maxAge: 1000 * 60 * 60 * 24, // Session expiration (optional)
       },
@@ -63,7 +61,7 @@ const createApp = (database, store) => {
 
   // Set up static files 
   //todo!
-  app.use(express.static(path.join(__dirname, "/mvc/view")));
+  // app.use(express.static(path.join(__dirname, "/mvc/view")));
 
   // importing routes
   const mainRoutes = require("./routes/main"); // updated import statement
