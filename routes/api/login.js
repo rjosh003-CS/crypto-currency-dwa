@@ -20,8 +20,8 @@ router.post("/", (req, res) => {
   // Sending the response in JSON format
   // res.json({ message: "Login successful", user });
 }, passport.authenticate("local", {
-  successRedirect: './success',
-  failureRedirect: './failure',
+  successRedirect: "./success",
+  failureRedirect: "./failure",
   failureFlash: true
 }));
 
