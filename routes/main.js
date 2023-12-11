@@ -7,6 +7,8 @@ const aboutRoute = require("./about");
 const homeRoute = require("./home");
 const registerRoute = require("./register");
 const loginRoute = require("./login");
+const contactRoute = require("./contact");
+const financeRoute = require("./finance");
 
 // api routes
 const apiLoginRoute = require("./api/login");
@@ -22,6 +24,10 @@ router.use((req, res, next) => {
 // normal web routes
 router.use("/", homeRoute);
 router.use("/about", aboutRoute);
+router.use("/contact", contactRoute);
+router.use("/finance", financeRoute);
+
+// special routes needs authentication for checking.
 router.use("/register", registerRoute);
 router.use("/login", loginRoute);
 
