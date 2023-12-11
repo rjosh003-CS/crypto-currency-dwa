@@ -13,7 +13,6 @@ const GOOGLE_CALLBACK_URL = process.env.CALL_BACK_URL;
 
 // Configure Google authentication
 passport.use(
-  GoogleStrategy,
   new GoogleStrategy(
     {
       clientID: CLIENT_ID,
