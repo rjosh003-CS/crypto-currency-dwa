@@ -1,4 +1,8 @@
-const app = require("./app");
+const createApp = require("./app");
+const {database, store} = require("./database");
+
+// creating app
+const app = createApp(database,store);
 
 // starting server
 // server listening at port
