@@ -4,6 +4,7 @@ const env = require("dotenv");
 env.config();
 
 const port = process.env.PORT || 8000;
+const baseURL = `https://localhost:${port}/`;
 const login_url = `https://localhost:${port}/api/login`;
 const register_url = `https://localhost:${port}/api/register`;
 const delete_url = `https://localhost:${port}/api/delete_user`;
@@ -73,6 +74,7 @@ const updateUser = async () => {
 
 module.exports = {
   // urls
+  baseURL,
   login_url,
   register_url,
   update_url,
