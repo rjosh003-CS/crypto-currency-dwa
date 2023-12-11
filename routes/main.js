@@ -33,11 +33,11 @@ router.use("/login", loginRoute);
 
 // Routes for success and failure after login
 router.get("/success", (req, res) => {
-    res.status(200).json({ message: "Login Successful!" });
+    res.status(200).render("200page",  {message: "Login Successful!"});
 });
 
 router.get("/failure", (req, res) => {
-    res.status(401).json({ message: "Login Failed!" });
+    res.status(401).send( "401page" , {message:"Login Failed!"});
 });
 
 
