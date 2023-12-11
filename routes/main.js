@@ -13,6 +13,7 @@ const financeRoute = require("./finance");
 // api routes
 const apiLoginRoute = require("./api/login");
 const apiRegisterRoute = require("./api/register");
+const apiGoogleRegisterRoute = require("./api/registerGoogle");
 
 // Middleware for logging requests
 router.use((req, res, next) => {
@@ -44,6 +45,7 @@ router.get("/failure", (req, res) => {
 // api Routes
 router.use("/api/login", apiLoginRoute);
 router.use("/api/register", apiRegisterRoute);
+router.use("/api/register/google", apiGoogleRegisterRoute);
 
 // exports
 module.exports = router;
