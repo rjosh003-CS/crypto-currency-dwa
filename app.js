@@ -55,12 +55,14 @@ const createApp = (database, store) => {
 
   // setting up view engine
   app.set("view engine", "ejs");
+  app.set("views", path.join(__dirname, "/mvc/view"));
 
   // middleware to parse body of request into json object
   app.use(bodyParser.json()); // for parsing application/json
   app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-  // Set up static files
+  // Set up static files 
+  //todo!
   app.use(express.static(path.join(__dirname, "/mvc/view")));
 
   // importing routes
