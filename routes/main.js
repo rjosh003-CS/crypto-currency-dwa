@@ -25,6 +25,16 @@ router.use("/about", aboutRoute);
 router.use("/register", registerRoute);
 router.use("/login", loginRoute);
 
+// Routes for success and failure after login
+router.get("/success", (req, res) => {
+    res.status(200).json({ message: "Login Successful!" });
+});
+
+router.get("/failure", (req, res) => {
+    res.status(401).json({ message: "Login Failed!" });
+});
+
+
 // api Routes
 router.use("/api/login", apiLoginRoute);
 router.use("/api/register", apiRegisterRoute);
