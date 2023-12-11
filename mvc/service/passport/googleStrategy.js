@@ -26,6 +26,7 @@ passport.use(
       // You can access the user's profile information from the 'profile' parameter
       // You can also store the user's information in your database or perform any other necessary actions
       // Call the 'done' function to indicate that the authentication process is complete
+      console.log(profile);
       done(null, profile);
     }
   )
