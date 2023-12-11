@@ -6,3 +6,6 @@
 
 # folder
 node_modules/
+
+# coverage folder
+coverage/
