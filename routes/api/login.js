@@ -14,7 +14,8 @@ router.post("/", (req, res) => {
   // Assuming you have a database or authentication logic here
   // You can perform any necessary checks or validations
 
-
+  //todo! remove the res.json bellow
+  // res.status(200).json(user);
 
   // Sending the response in JSON format
   // res.json({ message: "Login successful", user });
