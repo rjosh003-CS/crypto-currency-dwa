@@ -4,7 +4,8 @@
   "description": "mini-project",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll",
+    "test": "jest",
+    "devTest": "jest --watchAll --coverage",
     "start": "node server.js",
     "devStart": "nodemon server.js",
     "build": "npm install && npm run devStart -e js,ejs",
@@ -33,6 +34,7 @@
     "@babel/preset-env": "^7.23.5",
     "eslinter": "^3.1.0",
     "jest": "^29.7.0",
+    "supertest": "^6.3.3",
     "nodemon": "^3.0.1"
   },
   "engines": {
