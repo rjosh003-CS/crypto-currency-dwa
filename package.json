@@ -4,7 +4,7 @@
   "description": "mini-project",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "clear && jest",
     "devTest": "jest --watchAll --coverage",
     "start": "node server.js",
     "devStart": "nodemon server.js",
