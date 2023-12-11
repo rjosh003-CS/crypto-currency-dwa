@@ -15,7 +15,7 @@ router
     next();
   }, home)
   .post((req, res) => {
-    return res.status(200).send("home");
+    return res.status(200).send("home page");
   });
 
 module.exports = router ;
