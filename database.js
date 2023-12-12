@@ -1,9 +1,9 @@
 // database.js
 
 const colour = require("./color_code");
-const env = require("dotenv");
 
-env.config();
+// const env = require("dotenv");
+// env.config();
 
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
@@ -19,19 +19,19 @@ const connectToDatabase = () => {
 
   const db = mongoose.connection;
 
-  db.on('error', (err) => {
+  db.on("error", (err) => {
      console.error(err);
   });
 
-  db.once('open', () => {
-     console.log('Connected to MongoDB');
+  db.once("open", () => {
+     console.log("Connected to MongoDB");
   });
 };
 
 const createSessionStore = () => {
   return MongoStore.create({
     mongoUrl: process.env.MONGODB_URL,
-    collectionName: process.env.SESSION_COLLECTION,
+    collectionName: process.env.SESSION_COLLECTION
   });
 };
 

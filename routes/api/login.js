@@ -4,21 +4,9 @@ const passport = require("passport");
 const router = express.Router();
 
 // POST route for login
-router.post("/", (req, res) => {
-  // Assuming you have a user object with username and password properties
-  const user = {
-    username: req.body.username,
-    password: req.body.password
-  };
-
-  // Assuming you have a database or authentication logic here
-  // You can perform any necessary checks or validations
-
-  //todo! remove the res.json bellow
-  // res.status(200).json(user);
-
-  // Sending the response in JSON format
-  // res.json({ message: "Login successful", user });
+router.post("/", (req, res, next) => {
+  console.log(req.body);
+  next();
 }, passport.authenticate("local", {
   successRedirect: "./success",
   failureRedirect: "./failure",
