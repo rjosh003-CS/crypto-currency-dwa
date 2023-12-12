@@ -8,7 +8,7 @@ const passport = require("../../mvc/service/passport/passport_main");
 // @route: /api/register
 router.post(
   "/",
-  (req, resp, next) => {
+  (req, res, next) => {
     console.log(req.body);
     next();
   },
