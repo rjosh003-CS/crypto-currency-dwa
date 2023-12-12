@@ -7,9 +7,6 @@ const router = express.Router();
 // @description: Google registration route
 router.get(
     "/",
-    (req, res, next)=>{
-      next();
-    },
     passport.authenticate("google", {
       scope: ["profile", "email"]
     })
