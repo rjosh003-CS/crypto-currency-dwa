@@ -1,9 +1,3 @@
-const dotenv = require("dotenv");
-const { parsed: envVars } = dotenv.config();
-const dotenvExpand = require("dotenv-expand");
-
-dotenvExpand.expand({ parsed: envVars });
-
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
@@ -11,13 +5,15 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const GOOGLE_CALLBACK_URL = process.env.CALL_BACK_URL;
 
+console.log(`${GOOGLE_CALLBACK_URL}`);
+
 // Configure Google authentication
 passport.use(
   new GoogleStrategy(
     {
       clientID: CLIENT_ID,
       clientSecret: CLIENT_SECRET,
-      callbackURL: GOOGLE_CALLBACK_URL
+      callbackURL: GOOGLE_CALLBACK_URL,
     },
     (accessToken, refreshToken, profile, done) => {
       // Handle user authentication logic here
