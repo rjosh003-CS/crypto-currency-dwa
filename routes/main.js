@@ -1,6 +1,7 @@
 // imports
 const colour = require("../color_code");
 const router = require("express").Router();
+const { isAuthenticated, isNotAuthenticated}  = require("./helper_function");
 
 // web routes
 const aboutRoute = require("./about");
@@ -14,6 +15,7 @@ const financeRoute = require("./finance");
 const apiLoginRoute = require("./api/login");
 const apiRegisterRoute = require("./api/register");
 const apiGoogleRegisterRoute = require("./api/registerGoogle");
+const apiLogoutRoute = require("./api/logout");
 
 // Middleware for logging requests
 router.use((req, res, next) => {
@@ -29,8 +31,8 @@ router.use("/contact", contactRoute);
 router.use("/finance", financeRoute);
 
 // special routes needs authentication for checking.
-router.use("/register", registerRoute);
-router.use("/login", loginRoute);
+router.use("/register", isNotAuthenticated, registerRoute);
+router.use("/login", isNotAuthenticated, loginRoute);
 
 // Routes for success and failure after login
 router.get("/success", (req, res) => {
@@ -43,9 +45,15 @@ router.get("/failure", (req, res) => {
 
 
 // api Routes
-router.use("/api/login", apiLoginRoute);
-router.use("/api/register", apiRegisterRoute);
-router.use("/api/register/google", apiGoogleRegisterRoute);
+router.use("/api/login", isNotAuthenticated, apiLoginRoute);
+router.use("/api/register", isNotAuthenticated, apiRegisterRoute);
+router.use("/api/register/google", isNotAuthenticated, apiGoogleRegisterRoute);
+
+//  api Routes for logout
+router.use("/api/logout", isAuthenticated, apiLogoutRoute);
+
+
+// 404 route
 
 // exports
 module.exports = router;
