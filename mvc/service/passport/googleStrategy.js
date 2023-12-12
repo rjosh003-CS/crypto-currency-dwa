@@ -5,7 +5,7 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const GOOGLE_CALLBACK_URL = process.env.CALL_BACK_URL;
 
-console.log(`${GOOGLE_CALLBACK_URL}`);
+// console.log(`${GOOGLE_CALLBACK_URL}`);
 
 // Configure Google authentication
 passport.use(
