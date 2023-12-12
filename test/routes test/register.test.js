@@ -1,5 +1,8 @@
 const axios = require("axios");
 
+const dotenv = require("dotenv");
+dotenv.config();
+
 const port = process.env.PORT;
 const url = `http://localhost:${port}/register  `;
 

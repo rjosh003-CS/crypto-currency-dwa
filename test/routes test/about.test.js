@@ -1,9 +1,9 @@
 const axios = require("axios");
 
-// const env = require("dotenv");
-// env.config();
+const env = require("dotenv");
+env.config();
 
-// const port = process.env.PORT;
+const port = process.env.PORT;
 const about_url = `http://localhost:${port}/about`;
 
 let getResponse = null;
