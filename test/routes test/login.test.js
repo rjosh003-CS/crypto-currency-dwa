@@ -1,7 +1,7 @@
 const axios = require("axios");
 
-const env = require("dotenv");
-env.config();
+// const env = require("dotenv");
+// env.config();
 
 const port = process.env.PORT;
 const url = `http://localhost:${port}/login`;

@@ -39,8 +39,8 @@ const createApp = (sessionStore) => {
       saveUninitialized: true,
       store: sessionStore, // Use the MongoDB store for sessions
       cookie: {
-        maxAge: 1000 * 60 * 60 * 24, // Session expiration (optional)
-      },
+        maxAge: 1000 * 60 * 60 * 24 // Session expiration (optional)
+      }
     })
   );
 
