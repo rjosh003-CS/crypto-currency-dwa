@@ -1,5 +1,5 @@
 <!-- FILEPATH: /Users/rohit/igor/Databases and the Web/crypto-market/mvc/view/components/register_form.ejs -->
-<form action="/register" method="POST">
+<form action="/api/register" method="POST">
 
 <div>
   <label for="username">Username:</label>
@@ -18,4 +18,14 @@
 
   <button type="submit">Register</button>
   <a href="/login"><p>login</p></a>
+
+  <div>
+      <div><a href = "./api/register/google"><Google><i>[]<i> Google</a></div>
+  </div>
 </form>
+
+<div>
+  <% if (typeof error !== 'undefined') { %>
+    <p>Error: <%= error %></p>
+  <% } %>
+</div>
