@@ -39,34 +39,38 @@ const createApp = (sessionStore) => {
       saveUninitialized: true,
       store: sessionStore, // Use the MongoDB store for sessions
       cookie: {
-        maxAge: 1000 * 60 * 60 * 24 // Session expiration (optional)
-      }
+        maxAge: 1000 * 60 * 60 * 24, // Session expiration (optional)
+      },
     })
   );
-
-  // import the passport module
-  const passport = require("./mvc/service/passport/passport_main");
-
-  // Passport initialization middleware
-  app.use(passport.initialize());
-  app.use(passport.session());
 
   // setting up view engine
   app.set("view engine", "ejs");
   app.set("views", path.join(__dirname, "/mvc/view"));
 
-  // middleware to parse body of request into json object
+  // Use express.urlencoded() for parsing URL-encoded data
+  app.use(express.urlencoded({ extended: true }));
+  app.use(express.json());
   app.use(bodyParser.json()); // for parsing application/json
   app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-  // Set up static files 
+  // import the passport module
+  const passport = require("./utils/passport/passport_main");
+
+  // Passport initialization middleware
+  app.use(passport.initialize());
+  app.use(passport.session());
+
+  // Set up static files
   //todo!
   // app.use(express.static(path.join(__dirname, "/mvc/view")));
+  app.use(express.static(path.join(__dirname, "/public")));
 
   // importing routes
   const mainRoutes = require("./routes/main"); // updated import statement
   // using the routes in our application
   app.use("/", mainRoutes);
+
 
   return app;
 };

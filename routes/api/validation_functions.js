@@ -3,6 +3,43 @@ const { body, validationResult } = require("express-validator");
 
 // Middleware for validating the register form
 const validate_register_form = [
+  
+  // check for firstname
+  body("firstname")
+  .trim()
+  .notEmpty()
+  .withMessage("Name required!")
+  .isLength({ min: 3 })
+  .withMessage("Name must be at least 3 characters long")
+  .isAlpha()
+  .withMessage("Name must be alphabetic"),
+  
+  // check for middlename
+  body("middlename")
+  .trim()
+  .optional({checkFalsy: true})
+  .isLength({ min: 1 })
+  .withMessage("Username must be at least 1 characters long")
+  .isAlpha()
+  .withMessage("Name must be alphabetic"),
+  
+  // check for lastname
+  body("lastname")
+  .trim()
+  .optional({ checkFalsy: true})
+  .isLength({ min: 3 })
+  .withMessage("Name must be at least 3 characters long")
+  .isAlpha()
+  .withMessage("Name must be alphabetic"),
+  
+  // check for valid username
+body("username")
+  .trim()
+  .isLength({ min: 3 })
+  .withMessage("Username must be at least 3 characters long")
+  .isAlphanumeric()
+  .withMessage("Username must be alpha numeric"),
+  
   // check for valid email
   body("email")
     .trim()
@@ -24,20 +61,24 @@ const validate_register_form = [
       "Password must contain at least 1 lowercase, 1 uppercase, 1 numeric, and 1 special character"
     ),
 
-  // check for valid username
-  body("username")
-    .trim()
-    .notEmpty()
-    .withMessage("Username required!")
-    .isLength({ min: 3 })
-    .withMessage("Username must be at least 3 characters long")
-    .isAlphanumeric()
-    .withMessage("Username must be alpha numeric"),
+  // Check for password confirmation
+  body("password2")
+  .trim()
+  .custom((value, { req }) => {
+    if (value !== req.body.password) {
+      throw new Error("Passwords do not match");
+    }
+    return true;
+  })
+  .withMessage("Passwords do not match"),
 
   // handling errors
   (req, res, next) => {
-    const errors = validationResult(req);
+    
+    console.log("validat started");
+    console.log(req.body);
 
+    const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
       const processedErrors = {};
@@ -53,13 +94,10 @@ const validate_register_form = [
         errors: Object.values(processedErrors)
       });
     }
-    else{
-      res.status(200).json({message: "form validation successful"});
-    }
     
     console.log("validation done!");
     next();
-  },
+  }
 ];
 
 
