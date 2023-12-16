@@ -1,7 +1,7 @@
 // ./mvc/service/passport/localStrategy.js
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("../../models/userSchema"); // Assuming you have a User model
-const { compare } = require("../../mvc/controller/helperController");
+const { compare } = require("../../controller/helperController");
 
 // todo!
 // const UserController = require("../../controller/users_controller");
