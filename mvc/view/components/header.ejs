@@ -1,21 +1,38 @@
-<!-- header.ejs -->
-
 <header>
-  <h1>crypto-market</h1>
   <nav>
-    <div>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/finance">Finance</a></li>
-      </ul>
-    </div>
-    <div>
-      <ul>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/register">register</a></li>
-      </ul>
+    <div class="container">
+      <h1 class="my-5" style="color: red;">crypto-market</h1>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="/finance">Finance</a></li>
+          </ul>
+          <ul class="navbar-nav">
+            <% if (typeof user === 'undefined' || !user){ %>
+              <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+              <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+            <% } else { %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <% if (user.picture){ %>
+                    <img src="<%= user.picture %>" alt="Profile Pic" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 5px;">
+                  <% } %>
+                  Hi <%= user.firstname %>
+                  <i class="bi bi-gear"></i> <!-- Font Awesome cog icon -->
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                  <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="/api/logout">Logout</a></li>
+                </ul>
+              </li>
+            <% } %>
+          </ul>
+        </div>
+      </nav>
     </div>
   </nav>
 </header>

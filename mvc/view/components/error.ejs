@@ -1,0 +1,13 @@
+<% if (typeof error !== 'undefined' && error) { %>
+
+  <div class="error-message">
+    <% if (erro.status) { %>
+        <b><%= error.status %> : </b>
+    <%}%>
+
+    <% if (error.message) { %>
+        <%= error.message %>
+    <%}%>
+  </div>
+  
+<% } %>

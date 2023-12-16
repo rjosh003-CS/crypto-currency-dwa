@@ -1,16 +1,22 @@
 <!-- FILEPATH: /Users/rohit/igor/Databases and the Web/crypto-market/mvc/view/components/login_form.ejs -->
-<form action="/login" method="POST">
+<form action="./api/login" method="POST" class="mt-4">
 
-<div>
-  <label for="username">Username:</label>
-  <input type="text" id="username" name="username" required>
-</div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email:</label>
+    <input type="text" id="email" name="email" class="form-control" required>
+  </div>
 
-<div>
-  <label for="password">Password:</label>
-  <input type="password" id="password" name="password" required>
-</div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password:</label>
+    <input type="password" id="password" name="password" class="form-control" required>
+  </div>
 
-  <button type="submit">Login</button>
-  <a href="/register"><p>register</p></a>
+  <button type="submit" class="btn btn-primary mt-2 text-center">Login</button>
+
+  <div class="mt-3">
+    <div>
+      <a href="/register" class="btn btn-danger mt-2 d-block text-center"><i class="fab fa-google"></i>Register</a>
+    </div>
+  </div>
+
 </form>

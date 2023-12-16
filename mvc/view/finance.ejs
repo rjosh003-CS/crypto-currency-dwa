@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<%- include("./components/head.ejs") %>
+<body>
+    <%- include("./components/header") %>
+
+    <main>
+        <div class="container my-5 text-center"> <!-- Added my-5 for vertical margin -->
+            <% if (typeof title !== 'undefined' && title){ %>
+                <h1 class="display-4"><%= title %></h1>
+            <% } %>
+        </div>
+
+    </main>
+
+    <%- include("./components/footer.ejs") %>
+</body>
+</html>
