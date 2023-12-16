@@ -1,6 +1,6 @@
 // ./route/api/login.js
 const express = require("express");
-const passport = require("../../utils/passport/passport_main");
+const passport = require("../../mvc/service/passport/passport_main");
 const router = express.Router();
 
 const { encrypt, compare } = require("../../mvc/controller/helperController");
