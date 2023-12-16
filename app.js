@@ -20,6 +20,7 @@ MONGODB_URL = <mongodb_url>
 const ejs = require("ejs");
 const path = require("path");
 const bodyParser = require("body-parser");
+const flash = require("express-flash");
 
 // importing express
 const express = require("express");
@@ -43,6 +44,8 @@ const createApp = (sessionStore) => {
       },
     })
   );
+
+  app.use(flash());
 
   // setting up view engine
   app.set("view engine", "ejs");
