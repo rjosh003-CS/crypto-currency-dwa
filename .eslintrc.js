@@ -5,6 +5,7 @@ module.exports = {
     semi: [2, "always"],
     "no-console": 0,
     "arrow-body-style": [2, "as-needed"],
+    // "func-style": ["error", "declaration", { allowArrowFunctions: true }]
   },
   env: {
     es6: true,
@@ -12,7 +13,8 @@ module.exports = {
     browser: true
   },
   parserOptions: {
-    ecmaVersion: 6
+    ecmaVersion: 2021, // or higher, as needed
+    // sourceType: 'script',
  },
   extends: ["eslint:recommended"]
 };

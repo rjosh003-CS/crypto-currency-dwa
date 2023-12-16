@@ -9,3 +9,6 @@ node_modules/
 
 # coverage folder
 coverage/
+
+# dummy files
+dummy.json
