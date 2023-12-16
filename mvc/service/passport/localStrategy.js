@@ -1,30 +1,47 @@
-const passport = require("passport");
+// ./mvc/service/passport/localStrategy.js
 const LocalStrategy = require("passport-local").Strategy;
-const User = require("../../models/users_schema"); // Assuming you have a User model
+const User = require("../../models/userSchema"); // Assuming you have a User model
+const { compare } = require("../../mvc/controller/helperController");
 
-passport.use(
-  new LocalStrategy(
-    {
-      usernameField: "email", // Assuming email is the username field
-      passwordField: "password", // Assuming password is the password field
-    },
-    async (email, password, done) => {
-      try {
-        // Find the user by email
-        const user = await User.findOne({ email });
+// todo!
+// const UserController = require("../../controller/users_controller");
 
-        // If user not found or password doesn't match, return error
-        if (!user?.isValidPassword(password)) {
-          return done(null, false, { message: "Invalid email or password" });
-        }
+// ----------------------------------------------------------local Strategy-------------------------------------------------------------------------------
 
-        // If user found and password matches, return user
-        return done(null, user);
-      } catch (error) {
-        return done(error);
+const localStrategy = new LocalStrategy(
+  {
+    usernameField: "email", // Assuming email is the email field
+    passwordField: "password", // Assuming password is the password field
+  },
+  async (email, password, done) => {
+    console.log("inside local passort Strategy");
+    console.log(`email: ${email}`);
+    console.log(`password: ${password}`);
+
+    try {
+      const user = await User.findOne({ email });
+
+      let isMatch = null;
+
+      if (user) {
+        isMatch = await compare(password, user.password);
+        console.log(`isMatch: ${isMatch}`);
       }
+
+      if (!user || !isMatch) {
+        return done(null, false, {
+          errror: {
+            status: "Input error!",
+            message: "Incorrect email or password",
+          },
+        });
+      }
+
+      return done(null, user);
+    } catch (error) {
+      return done(error);
     }
-  )
+  }
 );
 
-module.exports = passport;
+module.exports = localStrategy;
