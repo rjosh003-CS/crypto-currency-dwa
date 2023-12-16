@@ -55,7 +55,7 @@ const createApp = (sessionStore) => {
   app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
   // import the passport module
-  const passport = require("./utils/passport/passport_main");
+  const passport = require("./mvc/service/passport/passport_main.js");
 
   // Passport initialization middleware
   app.use(passport.initialize());
