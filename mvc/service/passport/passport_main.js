@@ -4,7 +4,7 @@ const passport = require("passport");
 
 const User = require("../../models/userSchema"); // Assuming you have a User model
 
-const localStrategy = require("./localStrategy");
+const { local_login, local_register} = require("./localStrategy");
 // const googleStrategy = require("./googleStrategy");
 
 const mongoose = require("mongoose");
@@ -27,7 +27,8 @@ passport.deserializeUser(async (email, done) => {
 });
 
 // Configure local strategy
-passport.use("local", localStrategy);
+passport.use("local-login", local_login);
+passport.use("local-register", local_register);
 
 // Configure Google strategy
 // passport.use("google",  googleStrategy);
