@@ -1,14 +1,15 @@
 // ./mvc/service/passport/localStrategy.js
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("../../models/userSchema"); // Assuming you have a User model
-const { compare } = require("../../controller/helperController");
+const { encrypt, compare } = require("../../controller/helperController");
+// const { register } = require("../../controller/routeController");
+const {getRandomProfilePic} = require("../../controller/helperController");
 
-// todo!
-// const UserController = require("../../controller/users_controller");
 
-// ----------------------------------------------------------local Strategy-------------------------------------------------------------------------------
+// ----------------------------------------------------------local Strategy--------------------------------------------------
 
-const localStrategy = new LocalStrategy(
+// local strategy for login
+const local_login = new LocalStrategy(
   {
     usernameField: "email", // Assuming email is the email field
     passwordField: "password", // Assuming password is the password field
@@ -44,4 +45,49 @@ const localStrategy = new LocalStrategy(
   }
 );
 
-module.exports = localStrategy;
+// local strategy for register
+const local_register = new LocalStrategy(
+  {
+    passReqToCallback: true,
+    usernameField: 'email', // Assuming email is the username field
+    passwordField: 'password', // Assuming password is the password field
+  },
+  async (req, email, password, done) => {
+    try {
+      console.log("inside passport strategy: registration")
+      const user = await User.findOne({ email });
+      
+      if (user) {
+        console.log("user already existed!")
+        return done(null, false, { message: 'Email already exists' });
+      }
+
+      const hashedPassword = await encrypt(password);
+
+      const newUserDetails = {
+        firstname: req.body.firstname,
+        middlename: req.body.middlename,
+        lastname: req.body.lastname,
+        username: req.body.username,
+        email: req.body.email,
+        picture: getRandomProfilePic(
+          req.body.firstname.charAt(0),
+          req.body.lastname.charAt(0)
+        ),
+        password: hashedPassword,
+        displayname: req.body.displayname,
+      };
+
+      const newUser = new User(newUserDetails);
+      await newUser.save();
+      console.log("new user save in passport session")
+      return done(null, newUser); // Return the newly registered user
+    } catch (err) {
+      console.log("err: passport registration")
+
+      return done(err);
+    }
+  }
+);
+
+module.exports = {local_login, local_register};
