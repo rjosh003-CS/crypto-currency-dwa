@@ -35,7 +35,11 @@ router.post(
     req.body.displayname = name;
     next();
   },
-  createUser
+  passport.authenticate("local-register", {
+    successRedirect: "/", // Redirect on successful registration
+    failureRedirect: "/register", // Redirect if registration fails
+    failureFlash: true
+  })
 );
 
 
