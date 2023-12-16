@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const {validate_register_form} = require("./validation_functions");
-const passport = require("../../utils/passport/passport_main");
+const passport = require("../../mvc/service/passport/passport_main");
 
 const User = require("../../mvc/models/userSchema");
 const { createUser } = require("../../mvc/controller/userController");
