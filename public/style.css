@@ -1,0 +1,85 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Apply Bootstrap classes */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-primary {
+    background-color: #f0b90b;
+  }
+  
+  .btn-primary:hover {
+    background-color: #d4a209;
+  }
+  
+  .alert {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+  
+  .alert-success {
+    background-color: #13262f;
+    border-color: #0a161b;
+    color: #2fc08c;
+  }
+  
+  .alert-danger {
+    background-color: #401a1a;
+    border-color: #2c1212;
+    color: #f07171;
+  }
+  
+  /* Custom styles */
+  .header {
+    padding: 20px;
+    background-color: #0a161b;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .subtitle {
+    font-size: 18px;
+    color: #ccc;
+  }
+  
+  /* Light mode */
+  body.light-mode {
+    background-color: #f8f9fa;
+    color: #333;
+  }
+  
+  /* Dark mode */
+  body.dark-mode {
+    background-color: #13262f;
+    color: #fff;
+  }
+
+   /* h1.mytitle {
+    color: #ADA8B6 !important;
+    }  */
