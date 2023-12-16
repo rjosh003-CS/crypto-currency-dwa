@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 // importing controllers
-const { finance } = require("../mvc/controller/main_controller");
+const { finance } = require("../mvc/controller/routeController");
 
 // About page route
 

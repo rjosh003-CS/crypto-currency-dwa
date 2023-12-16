@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 // importing controllers
-const { about } = require("../mvc/controller/main_controller");
+const { about } = require("../mvc/controller/routeController");
 
 // About page route
 
