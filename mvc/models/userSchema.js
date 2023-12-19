@@ -112,7 +112,12 @@ const userSchema = new mongoose.Schema({
   updated_at: {
     type: Date,
   },
+  passwordChangedAt: Date,
+  passwordResetToken: String,
+  passwordResetExpires: Date,
 });
+
+
 
 // Define the index on the schema
 userSchema.index(
@@ -156,6 +161,15 @@ userSchema.pre("save", async function (next) {
   }
 });
 
+userSchema.methods.createResetPassword = async function (){
+  const resetToken = crypto.randomBytes(32).toString("hex");
+
+  this.passwordResetToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+
+  this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+
+  return resetToken;
+}
 
 // creating a mongoose model for user with the defined schema
 const User = mongoose.model("User", userSchema);
