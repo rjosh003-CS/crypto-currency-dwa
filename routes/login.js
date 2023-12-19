@@ -11,11 +11,7 @@ router
   // @method: GET
   // @description: get method for login page
   .get((req, res, next) => {
-    // res.render("login", {
-    //   title: "Login",
-    //   message: "Login page",
-    //   name: "Login page"
-    // });
+    
     next();
   }, login)
 
