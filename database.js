@@ -2,9 +2,6 @@
 
 const colour = require("./color_code");
 
-// const env = require("dotenv");
-// env.config();
-
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
 
