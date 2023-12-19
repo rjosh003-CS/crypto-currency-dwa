@@ -1,7 +1,7 @@
 // imports
 const colour = require("../color_code");
 const router = require("express").Router();
-const { isAuthenticated, isNotAuthenticated}  = require("./helper_function");
+const { isAuthenticated, isNotAuthenticated, forgotPassword, passwordReset}  = require("./helper_function");
 const globalErroHandler = require("../mvc/controller/errorController");
 const CustomError = require ("../utils/CustomError");
 
@@ -56,6 +56,14 @@ router.use("/api/register", isNotAuthenticated, apiRegisterRoute);
 
 //  api Routes for logout
 router.use("/api/logout", isAuthenticated, apiLogoutRoute);
+
+// password reset routes
+router.route("/api/v1/users/forgotPassword").post( forgotPassword);
+
+router.route("/api/v1/users/resetPassword/:token").patch (passwordReset);
+
+
+
 
 
 // 404 route
