@@ -38,7 +38,8 @@ const contact = (req, res) => {
 // Controller for contact route
 const finance = (req, res) => {
   const data = { title: "Finance Page", currentYear: new Date().getFullYear() };
-  const newData = Object.assign({}, data, { user: req.user });
+  const error = req.error ? JSON.parse(req.error) : undefined;
+  const newData = Object.assign({}, data, { user: req.user, error: error});
   console.log(newData);
   return res.status(200).render("finance", newData);
 };
@@ -53,18 +54,24 @@ const profile = (req, res) => {
 
 // Controller for register route
 const register = (req, res) => {
-  return res.status(200).render("register", {
+  const data = {
     title: "Register Page",
     currentYear: new Date().getFullYear(),
-  });
+  };
+  const error = req.error ? JSON.parse(req.error) : undefined;
+  const newData = Object.assign({}, data, { error: error });
+  return res.status(200).render("register", newData);
 };
 
 // Controller for login route
 const login = (req, res) => {
-  return res.status(200).render("login", {
+  const data =  {
     title: "Login Page",
-    currentYear: new Date().getFullYear(),
-  });
+    currentYear: new Date().getFullYear()
+  };
+  const error = req.error ? JSON.parse(req.error) : undefined;
+  const newData = Object.assign({}, data, {error: error});
+  return res.status(200).render("login", newData);
 };
 
 // Exporting all controllers

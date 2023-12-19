@@ -63,9 +63,6 @@ router.route("/api/v1/users/forgotPassword").post( forgotPassword);
 router.route("/api/v1/users/resetPassword/:token").patch (passwordReset);
 
 
-
-
-
 // 404 route
 router.all("*", (req, res, next)=> {
     const error = new CustomError (`Can't find '${req.originalUrl}' on this server!`, 404 );
