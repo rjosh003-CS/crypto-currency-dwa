@@ -1,13 +1,33 @@
-<% if (typeof error !== 'undefined' && error) { %>
-
-  <div class="error-message">
-    <% if (error.status) { %>
-        <b><%= error.status %> : </b>
-    <%}%>
-
-    <% if (error.message) { %>
-        <%= error.message %>
-    <%}%>
+<% if (typeof errors !=='undefined' && errors.length> 0) { %>
+  <div class="alert alert-danger text-center">
+    <% errors.forEach(error=> { %>
+      <ul class="text-center">
+        <% if (error.status) { %>
+          <b>
+            <%= error.status %> :
+          </b>
+      <%}%>
+      <% if (error.message) { %>
+          <%= error.message %>
+      <%}%>
+    </ul>
+      <% }); %>
   </div>
-  
 <% } %>
+
+<!-- <% if (typeof errors !=='undefined' && errors.length> 0) { %>
+  <div class="error-container">
+    <% errors.forEach(error=> { %>
+      <div class="error-message">
+        <% if (error.status) { %>
+          <b>
+            <%= error.status %> :
+          </b>
+      <%}%>
+      <% if (error.message) { %>
+          <%= error.message %>
+      <%}%>
+      </div>
+    <% }); %>
+  </div>
+<% } %> -->

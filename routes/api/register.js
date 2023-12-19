@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+const {register} = require("../../mvc/controller/routeController");
+
 const {validate_register_form} = require("./validation_functions");
 const passport = require("../../mvc/service/passport/passport_main");
 
@@ -33,6 +35,39 @@ router.post(
     }
 
     req.body.displayname = name;
+    const err = req.body.errors;
+    delete req.body.errors;
+
+    if (err) {
+
+      const formData = {
+        firstname: req.body.firstname,
+        middlename: req.body.middlename,
+        lastname: req.body.lastname,
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
+        password2: req.body.password2
+      };
+
+      console.log(err);
+
+      const errorMessages = Object.keys(err).map(key => ({
+        status: "Validation Error",
+        message: err[key].msg // Assuming each error object has a 'msg' property
+      }));
+
+      formData.errors = errorMessages;
+
+      console.log(formData);
+      
+      req.flash("validationError", JSON.stringify(formData));
+      res.redirect("/register");
+      console.log("redirect route to register");
+      return;
+    }
+
+    console.log("pre auth end");
     next();
   },
   passport.authenticate("local-register", {

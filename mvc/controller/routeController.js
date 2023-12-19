@@ -38,8 +38,8 @@ const contact = (req, res) => {
 // Controller for contact route
 const finance = (req, res) => {
   const data = { title: "Finance Page", currentYear: new Date().getFullYear() };
-  const error = req.error ? JSON.parse(req.error) : undefined;
-  const newData = Object.assign({}, data, { user: req.user, error: error});
+  const errors = req.errors ? JSON.parse(req.errors) : undefined;
+  const newData = Object.assign({}, data, { user: req.user, errors: errors});
   console.log(newData);
   return res.status(200).render("finance", newData);
 };
@@ -56,10 +56,40 @@ const profile = (req, res) => {
 const register = (req, res) => {
   const data = {
     title: "Register Page",
-    currentYear: new Date().getFullYear(),
+    currentYear: new Date().getFullYear()
   };
-  const error = req.error ? JSON.parse(req.error) : undefined;
-  const newData = Object.assign({}, data, { error: error });
+  const err = req.flash("validationError");
+
+  console.log(err);
+  let initial_value = {
+    firsname: "",
+    lastname: "",
+    middlename: "",
+    username: "",
+    email: "",
+    password: "",
+    password2: ""
+  };
+
+  let errors = "";
+    try{
+      const value = JSON.parse(err);
+      initial_value = {
+        firstname: value.firstname,
+        middlename: value.middlename,
+        lastname: value.lastname,
+        username: value.username,
+        email: value.email,
+        password: value.password,
+        password2: value.password2
+      };
+
+      errors = value.errors;
+    }catch(err){}
+
+  console.log("->",initial_value);
+  const newData = Object.assign({}, data, {formData : initial_value, errors: errors});
+  console.log(newData);
   return res.status(200).render("register", newData);
 };
 
@@ -69,8 +99,8 @@ const login = (req, res) => {
     title: "Login Page",
     currentYear: new Date().getFullYear()
   };
-  const error = req.error ? JSON.parse(req.error) : undefined;
-  const newData = Object.assign({}, data, {error: error});
+  const errors = req.errors ? JSON.parse(req.errors) : undefined;
+  const newData = Object.assign({}, data, errors);
   return res.status(200).render("login", newData);
 };
 

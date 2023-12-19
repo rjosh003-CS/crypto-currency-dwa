@@ -31,6 +31,14 @@ const session = require("express-session");
 const createApp = (sessionStore) => {
   // setting up express
   const app = express();
+  
+  // Set up static files
+  //todo!
+  // app.use(express.static(path.join(__dirname, "/mvc/view")));
+  app.use(express.static(path.join(__dirname, "/public")));
+  
+  // defining the view folder path
+  app.set("views", path.join(__dirname, "/mvc/view"));
 
   // Setup express-session middleware
   app.use(
@@ -43,31 +51,25 @@ const createApp = (sessionStore) => {
         maxAge: 1000 * 60 * 60 * 24, // Session expiration (optional)
       },
     })
-  );
-
-  app.use(flash());
-
-  // setting up view engine
-  app.set("view engine", "ejs");
-  app.set("views", path.join(__dirname, "/mvc/view"));
-
-  // Use express.urlencoded() for parsing URL-encoded data
-  app.use(express.urlencoded({ extended: true }));
-  app.use(express.json());
-  app.use(bodyParser.json()); // for parsing application/json
-  app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-
-  // import the passport module
-  const passport = require("./mvc/service/passport/passport_main.js");
-
-  // Passport initialization middleware
-  app.use(passport.initialize());
-  app.use(passport.session());
-
-  // Set up static files
-  //todo!
-  // app.use(express.static(path.join(__dirname, "/mvc/view")));
-  app.use(express.static(path.join(__dirname, "/public")));
+    );
+    
+    // Use express.urlencoded() for parsing URL-encoded data
+    // app.use(express.urlencoded({ extended: true }));
+    app.use(bodyParser.json()); // for parsing application/json
+    app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+    app.use(express.json());
+    
+    app.use(flash());
+    
+    // import the passport module
+    const passport = require("./mvc/service/passport/passport_main.js");
+    
+    // Passport initialization middleware
+    app.use(passport.initialize());
+    app.use(passport.session());
+    
+    // setting up view engine
+    app.set("view engine", "ejs");
 
   // importing routes
   const mainRoutes = require("./routes/main"); // updated import statement

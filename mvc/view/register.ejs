@@ -7,10 +7,12 @@
     <main>
         <div class="container my-5"> <!-- Added my-5 for vertical margin -->
             <h1 class="display-4"><%= title %></h1> <!-- Utilized Bootstrap display heading -->
+            <%- include("./components/error.ejs") %>
             <%- include("./components/register_form.ejs") %>
         </div>
+
     </main>
     
     <%- include("./components/footer.ejs") %>
+    </html>
 </body>
-</html>

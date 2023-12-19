@@ -10,27 +10,27 @@ const validate_register_form = [
   .notEmpty()
   .withMessage("Name required!")
   .isLength({ min: 3 })
-  .withMessage("Name must be at least 3 characters long")
+  .withMessage("Firstname must be at least 3 characters long")
   .isAlpha()
-  .withMessage("Name must be alphabetic"),
+  .withMessage("Firstname must be alphabetic"),
   
   // check for middlename
   body("middlename")
   .trim()
   .optional({checkFalsy: true})
   .isLength({ min: 1 })
-  .withMessage("Username must be at least 1 characters long")
+  .withMessage("Middlename must be at least 1 characters long")
   .isAlpha()
-  .withMessage("Name must be alphabetic"),
+  .withMessage("Middlename must be alphabetic"),
   
   // check for lastname
   body("lastname")
   .trim()
   .optional({ checkFalsy: true})
   .isLength({ min: 3 })
-  .withMessage("Name must be at least 3 characters long")
+  .withMessage("Lastname must be at least 3 characters long")
   .isAlpha()
-  .withMessage("Name must be alphabetic"),
+  .withMessage("Lastname must be alphabetic"),
   
   // check for valid username
 body("username")
@@ -90,9 +90,15 @@ body("username")
         }
       });
 
-      return res.status(400).json({
-        errors: Object.values(processedErrors)
-      });
+
+      const error = Object.values(processedErrors);
+      // console.log(error);
+
+      req.body.errors = error;
+
+        // return res.status(400).json({
+        //   errors: Object.values(processedErrors)
+        // });
     }
     
     console.log("validation done!");
