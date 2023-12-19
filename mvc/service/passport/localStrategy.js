@@ -83,7 +83,7 @@ const local_register = new LocalStrategy(
       console.log("new user save in passport session")
       return done(null, newUser); // Return the newly registered user
     } catch (err) {
-      console.log("err: passport registration")
+      console.log(`error: ${err.msg}`);
 
       return done(err);
     }
