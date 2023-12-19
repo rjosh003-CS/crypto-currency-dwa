@@ -39,11 +39,12 @@ router.use("/profile", profileRoute);
 router.use("/register", isNotAuthenticated, registerRoute);
 router.use("/login", isNotAuthenticated, loginRoute);
 
-// Routes for success and failure after login
+// Routes for success after login
 router.get("/success", (req, res) => {
     res.status(200).render("200page",  {message: "Login Successful!"});
 });
 
+// Routes for failure after login
 router.get("/failure", (req, res) => {
     res.status(401).send( "401page" , {message:"Login Failed!"});
 });
