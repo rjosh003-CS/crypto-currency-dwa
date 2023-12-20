@@ -44,12 +44,20 @@ const finance = (req, res) => {
   return res.status(200).render("finance", newData);
 };
 
-// Controller for contact route
+// Controller for profile route
 const profile = (req, res) => {
   const data = { title: "Profile Page", currentYear: new Date().getFullYear() };
   const newData = Object.assign({}, data, { user: req.user });
   console.log(newData);
   return res.status(200).render( "profile", newData);
+};
+
+// Controller for dashboard route
+const dashboard = (req, res) => {
+  const data = { title: "Dashboard Page", currentYear: new Date().getFullYear() };
+  const newData = Object.assign({}, data, { user: req.user });
+  console.log(newData);
+  return res.status(200).render( "dashboard", newData);
 };
 
 // Controller for register route
@@ -122,5 +130,6 @@ module.exports = {
   login,
   contact,
   finance,
-  profile
+  profile,
+  dashboard
 };
