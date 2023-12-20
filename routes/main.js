@@ -19,6 +19,7 @@ const dashboardRoute = require("./dashboard");
 const apiLoginRoute = require("./api/login");
 const apiRegisterRoute = require("./api/register");
 const apiLogoutRoute = require("./api/logout");
+const apiCurrecyRoutes = require ("./api/currency");
 
 // const apiGoogleRegisterRoute = require("./api/registerGoogle");
 
@@ -54,6 +55,7 @@ router.get("/failure", (req, res) => {
 });
 
 // api Routes
+router.use("/api", isAuthenticated, apiCurrecyRoutes); 
 router.use("/api/login", isNotAuthenticated, apiLoginRoute);
 router.use("/api/register", isNotAuthenticated, apiRegisterRoute);
 // router.use("/api/register/google", isNotAuthenticated, apiGoogleRegisterRoute);
