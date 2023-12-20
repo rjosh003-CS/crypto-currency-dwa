@@ -38,7 +38,11 @@ const local_login = new LocalStrategy(
         return done(null, false, {message: "Incorrect email or password"});
       }
 
-      return done(null, user);
+      // Create a sanitized user object without the password field
+      const sanitizedUser = { ...user.toObject() }; // Convert Mongoose object to plain JavaScript object
+      delete sanitizedUser.password; // Remove the password field from the sanitized user object
+
+      return done(null, sanitizedUser);
     } catch (error) {
       console.log("error");
       return done(error);
@@ -82,7 +86,12 @@ const local_register = new LocalStrategy(
       const newUser = new User(newUserDetails);
       await newUser.save();
       console.log("new user save in passport session")
-      return done(null, newUser); // Return the newly registered user
+     
+      // Create a sanitized user object without the password field
+      const sanitizedUser = { ...user.toObject() }; // Convert Mongoose object to plain JavaScript object
+      delete sanitizedUser.password; // Remove the password field from the sanitized user object
+
+      return done(null, sanitizedUser); // Return the newly registered user
     } catch (err) {
       console.log(`error: ${err.msg}`);
 
