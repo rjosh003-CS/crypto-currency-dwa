@@ -9,10 +9,50 @@
             <% if (typeof title !== 'undefined' && title){ %>
                 <h1 class="display-4"><%= title %></h1>
             <% } %>
-        </div>
 
-    </main>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-button" id="search-input">
+                <button class="btn btn-primary" type="button" id="search-button">Search</button>
+            </div>
+            <div>
+                <ul id="suggestion-list" class="list-group"></ul>
+            </div>
 
-    <%- include("./components/footer.ejs") %>
-</body>
-</html>
+            <script>
+                // Autocompletion logic
+                const searchInput = document.getElementById('search-input');
+                const searchButton = document.getElementById('search-button');
+
+                searchInput.addEventListener('input', () => {
+                    const inputText = searchInput.value;
+                    if (inputText.length >= 2) {
+                        fetch(`/api/search?q=${inputText}`) // Send input as query parameter to the backend route
+                            .then(response => response.json())
+                            .then(data => {
+                                // Display the suggestions in a dropdown or autocomplete list
+                                console.log(data);
+                                // Example: Display suggestions in a list
+                                displaySuggestions(data);
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                            });
+                    }
+                });
+
+                function displaySuggestions(suggestions) {
+                    const suggestionList = document.getElementById('suggestion-list');
+                    suggestionList.innerHTML = ''; // Clear previous suggestions
+
+                    // Limit the output to 10 suggestions
+                    const limitedSuggestions = suggestions.slice(0, 10);
+
+                    limitedSuggestions.forEach(currency => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = currency.name; // Adjust this based on the response structure
+                        suggestionList.appendChild(listItem);
+                    });
+                }
+
+
+            </script>
