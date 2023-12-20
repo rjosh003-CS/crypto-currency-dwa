@@ -3,19 +3,71 @@
 <%- include("./components/head.ejs") %>
 <body>
     <%- include("./components/header") %>
-
+    
     <main>
         <div class="container my-5 text-center"> <!-- Added my-5 for vertical margin -->
             <% if (typeof title !== 'undefined' && title){ %>
                 <h1 class="display-4"><%= title %></h1>
-            <% } %>
-        </div>
+                <% } %>
+            </div>
+            
+            <div class = "container my-5">
+                <!-- firstname -->
+                <div class="mb-3">
+                    <label for="firstname" class="form-label">Firstname:</label>
+                    <input type="text" id="firstname" name="firstname" class="form-control" value="<%= user.firstname || '' %>" required>
+                </div>
 
-        <div class = "container my-5">
-            <% if (typeof user !== 'undefined' && user){ %>
-                <p ><%= user.displayname %></p>
-            <% } %>
-        </div>
+                <!-- Middlename -->
+                <div class="mb-3">
+                    <label for="middlename" class="form-label">Middlename:</label>
+                    <input type="text" id="middlename" name="middlename" class="form-control" value="<%= user.middlename || '' %>" required>
+                </div>
+
+                <!-- lastname -->
+                <div class="mb-3">
+                    <label for="lastname" class="form-label">lastname:</label>
+                    <input type="text" id="lastname" name="lastname" class="form-control" value="<%= user.lastname || '' %>" required>
+                </div>
+
+                <!-- profile pic url-->
+                <div class="mb-3">
+                    <label for="picture" class="form-label">Profile picture URL:</label>
+                    <input type="text" id="picture" name="picture" class="form-control" value="<%= user.picture || '' %>" required>
+                </div>
+
+                <!-- username -->
+                <div class="mb-3">
+                    <label for="username" class="form-label">username:</label>
+                    <input type="text" id="username" name="username" class="form-control" value="<%= user.username || '' %>" required>
+                </div>
+
+                <!-- email -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">email:</label>
+                    <input type="text" id="email" name="email" class="form-control" value="<%= user.email || '' %>" required>
+                </div>
+
+                <!-- password -->
+                <div class="mb-3">
+                    <label for="password" class="form-label">password:</label>
+                    <input type="text" id="password" name="password" class="form-control" value="<%= '' %>" required>
+                </div>
+
+                <!-- password2 -->
+                <div class="mb-3">
+                    <label for="password2" class="form-label">password2:</label>
+                    <input type="text" id="password2" name="password2" class="form-control" value="<%=  '' %>" required>
+                </div>
+
+                <!-- submit button -->
+                <div class="mt-3">
+                    <div>
+                      <button type="submit" class="btn btn-primary mt-2 d-block text-center"><i class="fab"></i> Submit </button>
+                    </div>
+                </div>
+
+            </div>
 
     </main>
 
