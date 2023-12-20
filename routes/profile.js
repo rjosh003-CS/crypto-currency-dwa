@@ -1,12 +1,11 @@
 const router = require("express").Router();
-const { isAuthenticated } = require("./helper_function");
 const { profile } = require("../mvc/controller/routeController");
 
 // profile route
 router
   .route("/")
-  .get(isAuthenticated, profile)
-  .post(isAuthenticated, (req, res) => {
+  .get(profile)
+  .post((req, res) => {
     const data = Object.assign(
       {},
       {
