@@ -59,11 +59,11 @@ const createApp = (sessionStore) => {
     app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
     app.use(express.json());
     
-    app.use(flash());
-    
     // import the passport module
     const passport = require("./mvc/service/passport/passport_main.js");
     
+    app.use(flash());
+
     // Passport initialization middleware
     app.use(passport.initialize());
     app.use(passport.session());
