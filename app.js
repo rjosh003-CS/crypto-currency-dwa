@@ -21,6 +21,7 @@ const ejs = require("ejs");
 const path = require("path");
 const bodyParser = require("body-parser");
 const flash = require("express-flash");
+const cors = require("cors");
 
 // importing express
 const express = require("express");
@@ -69,6 +70,13 @@ const createApp = (sessionStore) => {
     
     // setting up view engine
     app.set("view engine", "ejs");
+
+    const corsOptions = {
+      origin: ["https://api.coingecko.com/api/v3/coins/list"], // Allow requests from this origin
+      methods: "GET,POST" // Allow specific HTTP methods
+    };
+
+    app.use(cors(corsOptions));
 
   // importing routes
   const mainRoutes = require("./routes/main"); // updated import statement
