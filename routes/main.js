@@ -13,6 +13,7 @@ const loginRoute = require("./login");
 const contactRoute = require("./contact");
 const financeRoute = require("./finance");
 const profileRoute = require("./profile");
+const dashboardRoute = require("./dashboard");
 
 // api routes
 const apiLoginRoute = require("./api/login");
@@ -32,10 +33,13 @@ router.use((req, res, next) => {
 router.use("/", homeRoute);
 router.use("/about", aboutRoute);
 router.use("/contact", contactRoute);
-router.use("/finance", isAuthenticated, financeRoute);
-router.use("/profile", profileRoute);
 
 // special routes needs authentication for checking.
+router.use("/finance", isAuthenticated, financeRoute);
+router.use("/profile", isAuthenticated, profileRoute);
+router.use("/dashboard", isAuthenticated, dashboardRoute);
+
+// API Routes
 router.use("/register", isNotAuthenticated, registerRoute);
 router.use("/login", isNotAuthenticated, loginRoute);
 
@@ -48,7 +52,6 @@ router.get("/success", (req, res) => {
 router.get("/failure", (req, res) => {
     res.status(401).send( "401page" , {message:"Login Failed!"});
 });
-
 
 // api Routes
 router.use("/api/login", isNotAuthenticated, apiLoginRoute);
