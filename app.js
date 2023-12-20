@@ -43,11 +43,11 @@ const createApp = (sessionStore) => {
     session({
       secret: process.env.SESSION_SECRET, // Change this to a random secret key
       resave: false,
-      saveUninitialized: true,
+      saveUninitialized: false,
       store: sessionStore, // Use the MongoDB store for sessions
       cookie: {
         maxAge: 1000 * 60 * 60 * 24, // Session expiration (optional)
-      },
+      }
     })
     );
     
