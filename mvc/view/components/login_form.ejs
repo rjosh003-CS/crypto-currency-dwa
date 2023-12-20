@@ -1,15 +1,17 @@
 <!-- FILEPATH: /Users/rohit/igor/Databases and the Web/crypto-market/mvc/view/components/login_form.ejs -->
 <form action="./api/login" method="POST" class="mt-4">
 
+  <% if(typeof formData !== undefined && formData ) { %>
   <div class="mb-3">
     <label for="email" class="form-label">Email:</label>
-    <input type="text" id="email" name="email" class="form-control" required>
+    <input type="text" id="email" name="email" class="form-control" value= "<%=formData.email || '' %>" required>
   </div>
-
+  
   <div class="mb-3">
     <label for="password" class="form-label">Password:</label>
-    <input type="password" id="password" name="password" class="form-control" required>
+    <input type="password" id="password" name="password" class="form-control"  value= "<%= formData.password || '' %>"  required>
   </div>
+  <%}%>
 
   <button type="submit" class="btn btn-primary mt-2 text-center">Login</button>
 
