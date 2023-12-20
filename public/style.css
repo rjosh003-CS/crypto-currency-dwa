@@ -90,6 +90,12 @@
   background-color: #13262f;
   transition: all 0.3s ease;
   color: white;
+  z-index: 5;
+}
+
+/* This style applies to .sidebar when .darkmode is active */
+body.dark-mode .sidebar {
+  background-color: white;
 }
 
 
@@ -114,6 +120,10 @@
 /* Collapse indicator */
 .sidebar-link {
   color: white;
+}
+
+body.dark-mode .sidebar-link {
+  color: blue;
 }
 
 .sidebar-link::after {
