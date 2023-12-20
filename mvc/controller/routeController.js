@@ -58,9 +58,10 @@ const register = (req, res) => {
     title: "Register Page",
     currentYear: new Date().getFullYear()
   };
+
+  // getting message from validation error if any else undefined
   const err = req.flash("validationError");
 
-  console.log(err);
   let initial_value = {
     firsname: "",
     lastname: "",
@@ -99,8 +100,17 @@ const login = (req, res) => {
     title: "Login Page",
     currentYear: new Date().getFullYear()
   };
-  const errors = req.errors ? JSON.parse(req.errors) : undefined;
-  const newData = Object.assign({}, data, errors);
+
+  const email = req.session.email || "";
+
+  let initial_value = {
+    email : email,
+    password: ""
+  };
+  const error = req.flash("error"); 
+
+  const newData = Object.assign({}, data, {formData: initial_value, errors: error});
+  console.log(newData);
   return res.status(200).render("login", newData);
 };
 
