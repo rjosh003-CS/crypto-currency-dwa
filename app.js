@@ -33,13 +33,11 @@ const createApp = (sessionStore) => {
   const app = express();
   
   // Set up static files
-  //todo!
-  // app.use(express.static(path.join(__dirname, "/mvc/view")));
-  app.use(express.static(path.join(__dirname, "/public")));
+  app.use("/public", express.static(path.join(__dirname, "/public")));
   
   // defining the view folder path
   app.set("views", path.join(__dirname, "/mvc/view"));
-
+  
   // Setup express-session middleware
   app.use(
     session({
@@ -54,6 +52,7 @@ const createApp = (sessionStore) => {
     );
     
     // Use express.urlencoded() for parsing URL-encoded data
+
     // app.use(express.urlencoded({ extended: true }));
     app.use(bodyParser.json()); // for parsing application/json
     app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
