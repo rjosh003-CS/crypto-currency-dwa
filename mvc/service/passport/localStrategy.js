@@ -13,11 +13,15 @@ const local_login = new LocalStrategy(
   {
     usernameField: "email", // Assuming email is the email field
     passwordField: "password", // Assuming password is the password field
+    passReqToCallback: true
   },
-  async (email, password, done) => {
+  async (req, email, password, done) => {
     console.log("inside local passort Strategy");
     console.log(`email: ${email}`);
     console.log(`password: ${password}`);
+
+    // adding the email id into the session
+    req.session.email = req.body.email;
 
     try {
       const user = await User.findOne({ email });
@@ -30,16 +34,13 @@ const local_login = new LocalStrategy(
       }
 
       if (!user || !isMatch) {
-        return done(null, false, {
-          errror: {
-            status: "Input error!",
-            message: "Incorrect email or password",
-          },
-        });
+        console.log("Incorrect email or password");
+        return done(null, false, {message: "Incorrect email or password"});
       }
 
       return done(null, user);
     } catch (error) {
+      console.log("error");
       return done(error);
     }
   }
