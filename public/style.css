@@ -80,6 +80,60 @@
     color: #fff;
   }
 
+/* Sidebar styling */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  height: 100%;
+  width: 250px;
+  background-color: #13262f;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+
+.content {
+  margin-left: -150px; /* Adjust margin to accommodate the sidebar width */
+}
+
+.custom-list {
+  list-style: none; /* Removes the default bullets or numbers */
+  padding: 0; /* Resets default padding */
+  margin: 0; /* Resets default margin */
+}
+
+.sidebar.show {
+  left: 0;
+}
+
+.sidebar-nav {
+  padding: 15px;
+}
+
+/* Collapse indicator */
+.sidebar-link {
+  color: white;
+}
+
+.sidebar-link::after {
+  content: '\f107';
+  float: right;
+}
+
+.sidebar-link.collapsed::after {
+  content: '\f105';
+}
+
+/* sidebar-item class */
+.sidebar-item{
+  padding: 10px 0;
+}
+/* Toggle button styling */
+#sidebarToggle {
+  margin-left: 250px; /* Matches sidebar width */
+}
+
    /* h1.mytitle {
     color: #ADA8B6 !important;
     }  */
