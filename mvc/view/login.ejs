@@ -5,6 +5,19 @@
     <%- include("./components/header") %>
 
     <main>
+        <% if (typeof errors !== undefined && errors.length > 0) { %>
+        <div class="my-5 alert alert-danger text-center">
+            <% errors.forEach( error => { %>
+                <% if (error.length > 0){ %>
+                <ul class="text-center">
+                <%= error%>
+                </ul>
+            <% } %>
+        <%});%>
+        </div>
+    <%}%>
+
+
         <div class="container my-5"> <!-- Added my-5 for vertical margin -->
             <h1 class="display-4"><%= title %></h1> <!-- Utilized Bootstrap display heading -->
             <%- include ("./components/login_form.ejs") %>
@@ -12,7 +25,6 @@
     </main>
 
     <!--  error message component-->
-    <%- include("./components/error.ejs") %>
 
     <!-- footer component -->
     <%- include("./components/footer.ejs") %>
