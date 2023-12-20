@@ -15,7 +15,7 @@
                 <button class="btn btn-primary" type="button" id="search-button">Search</button>
             </div>
             <div>
-                <ul id="suggestion-list" class="list-group"></ul>
+                <ul id="suggestion-list" class="list-group list-unstyled text-start"></ul>
             </div>
 
             <script>
@@ -37,6 +37,9 @@
                             .catch(error => {
                                 console.error('Error:', error);
                             });
+                    }else{
+                        const suggestionList = document.getElementById('suggestion-list');
+                        suggestionList.innerHTML = ''; // Clear previous suggestions
                     }
                 });
 
