@@ -27,3 +27,8 @@ exports.homePage = {
     }
   };
 
+  exports.dashboardPage = {
+    title: 'Your Dashboard',
+    description: `Welcome to your personalized dashboard. This dynamic space is tailored to your needs, providing comprehensive insights and tools for managing your cryptocurrency journey. Keep a close eye on your portfolio performance, analyze trends, and execute transactions effortlessly. Stay updated with real-time market data, personalized alerts, and curated news, empowering you to make informed decisions in the ever-evolving world of digital assets.`
+  };
+  
