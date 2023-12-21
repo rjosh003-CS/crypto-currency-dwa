@@ -60,6 +60,14 @@ const dashboard = (req, res) => {
   return res.status(200).render( "dashboard", newData);
 };
 
+// Controller for dashboard route
+const update_password_page = (req, res) => {
+  const data = { title: "Update Password", currentYear: new Date().getFullYear() };
+  const newData = Object.assign({}, data, { user: req.user });
+  console.log(newData);
+  return res.status(200).render( "update_password", newData);
+};
+
 // Controller for register route
 const register = (req, res) => {
   const data = {
@@ -131,5 +139,6 @@ module.exports = {
   contact,
   finance,
   profile,
-  dashboard
+  dashboard,
+  update_password_page
 };
