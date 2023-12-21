@@ -1,7 +1,7 @@
 <% if (typeof errors !=='undefined' && errors.length> 0) { %>
   <div class="alert alert-danger text-center">
     <% errors.forEach(error=> { %>
-      <ul class="text-center">
+      
         <% if (error.status) { %>
           <b>
             <%= error.status %> :
@@ -15,19 +15,12 @@
   </div>
 <% } %>
 
-<!-- <% if (typeof errors !=='undefined' && errors.length> 0) { %>
-  <div class="error-container">
-    <% errors.forEach(error=> { %>
-      <div class="error-message">
-        <% if (error.status) { %>
-          <b>
-            <%= error.status %> :
-          </b>
-      <%}%>
-      <% if (error.message) { %>
-          <%= error.message %>
-      <%}%>
-      </div>
+<% if (typeof success !=='undefined' && success.length > 0) { %>
+  <div class="alert alert-success text-center">
+    <% success.forEach( message => { %>
+      <ul class="text-center">
+      <%=message %> 
+      </ul>
     <% }); %>
   </div>
-<% } %> -->
+<% } %>
