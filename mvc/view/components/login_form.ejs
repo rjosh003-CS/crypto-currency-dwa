@@ -1,5 +1,5 @@
 <!-- FILEPATH: /Users/rohit/igor/Databases and the Web/crypto-market/mvc/view/components/login_form.ejs -->
-<form action="./api/login" method="POST" class="mt-4">
+<form action="/api/login" method="POST" class="mt-4">
 
   <% if(typeof formData !== undefined && formData ) { %>
   <div class="mb-3">
@@ -17,7 +17,7 @@
 
   <div class="mt-3">
     <div>
-      <a href="/register" class="btn btn-danger mt-2 d-block text-center"><i class="fab fa-google"></i>Register</a>
+      <a href="/register" class="btn btn-danger mt-2 d-block text-center">Register</a>
     </div>
   </div>
 
