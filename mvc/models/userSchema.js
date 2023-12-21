@@ -1,5 +1,6 @@
 // importing the required module
 const mongoose = require("mongoose");
+const mongoosePaginate = require("mongoose-paginate-v2");
 
 // defining the schema for user
 const userSchema = new mongoose.Schema({
@@ -143,6 +144,9 @@ userSchema.methods.createResetPassword = async function (){
 
   return resetToken;
 }
+
+// adding pagination plugin
+userSchema.plugin(mongoosePaginate);
 
 // creating a mongoose model for user with the defined schema
 const User = mongoose.model("User", userSchema);
