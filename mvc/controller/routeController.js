@@ -1,5 +1,5 @@
 const { contextsKey } = require("express-validator/src/base");
-const { homePage, aboutPage, contactPage } = require("./dummy");
+const { homePage, aboutPage, contactPage, dashboardPage } = require("./dummy");
 
 // Controller for home route
 const home = (req, res) => {
@@ -74,7 +74,7 @@ const profile = (req, res) => {
 // Controller for dashboard route
 const dashboard = (req, res) => {
   const data = { title: "Dashboard Page", currentYear: new Date().getFullYear() };
-  const newData = Object.assign({}, data, { user: req.user });
+  const newData = Object.assign({}, data, { user: req.user, page: dashboardPage });
   console.log(newData);
   return res.status(200).render( "dashboard", newData);
 };
