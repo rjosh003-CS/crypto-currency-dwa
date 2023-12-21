@@ -14,12 +14,14 @@ const contactRoute = require("./contact");
 const financeRoute = require("./finance");
 const profileRoute = require("./profile");
 const dashboardRoute = require("./dashboard");
+const passwordUpdateRoute = require("./password-update");
 
 // api routes
 const apiLoginRoute = require("./api/login");
 const apiRegisterRoute = require("./api/register");
 const apiLogoutRoute = require("./api/logout");
 const apiCurrecyRoutes = require ("./api/currency");
+const apiPasswordChange = require("./api/update-password");
 
 // const apiGoogleRegisterRoute = require("./api/registerGoogle");
 
@@ -39,6 +41,7 @@ router.use("/contact", contactRoute);
 router.use("/finance", isAuthenticated, financeRoute);
 router.use("/profile", isAuthenticated, profileRoute);
 router.use("/dashboard", isAuthenticated, dashboardRoute);
+router.use("/profile/update-password", isAuthenticated, passwordUpdateRoute);
 
 // API Routes
 router.use("/register", isNotAuthenticated, registerRoute);
@@ -55,7 +58,7 @@ router.get("/failure", (req, res) => {
 });
 
 // api Routes
-router.use("/api", isAuthenticated, apiCurrecyRoutes); 
+router.use("/api/profile/update-password", isAuthenticated, apiPasswordChange); 
 router.use("/api/login", isNotAuthenticated, apiLoginRoute);
 router.use("/api/register", isNotAuthenticated, apiRegisterRoute);
 // router.use("/api/register/google", isNotAuthenticated, apiGoogleRegisterRoute);
@@ -67,6 +70,7 @@ router.use("/api/logout", isAuthenticated, apiLogoutRoute);
 router.route("/api/v1/users/forgotPassword").post( forgotPassword);
 
 router.route("/api/v1/users/resetPassword/:token").patch (passwordReset);
+router.use("/api", isAuthenticated, apiCurrecyRoutes); 
 
 
 // 404 route
