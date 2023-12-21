@@ -1,0 +1,33 @@
+<!-- profile display container -->
+<div class="container my-5 text-start">
+    <% if (typeof el !== 'undefined' && el) { %>
+        <div class="container my-5 border p-4 rounded">
+
+            <!-- profile picture and displayname -->
+            <div class="d-flex align-items-center mb-4">
+                <img src="<%= el.picture %>" alt="Profile picture of <%= el.displayname %>" class="me-3 rounded-circle" style="max-width: 100px;">
+                <div>
+                    <h4 class="mb-0"><b>Display Name:</b> <%= el.displayname %></h4>
+                    <p class="text-muted mb-0"><b>Username:</b> <%= el.username %></p>
+                </div>
+            </div>
+
+            <!-- Personal Information -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <p><b>First Name:</b> <span><%= el.firstname %></span></p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p><b>Last Name:</b> <span><%= el.lastname %></span></p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p><b>Middle Name:</b> <span><%= el.middlename %></span></p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p><b>Email:</b> <span><%= el.email %></span></p>
+                </div>
+            </div>
+
+        </div>
+    <% } %>
+</div>
