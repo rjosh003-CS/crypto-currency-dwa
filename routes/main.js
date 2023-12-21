@@ -17,6 +17,7 @@ const dashboardRoute = require("./dashboard");
 const passwordUpdateRoute = require("./password-update");
 
 // api routes
+const apiRoleRoute = require("./api/role");
 const apiLoginRoute = require("./api/login");
 const apiRegisterRoute = require("./api/register");
 const apiLogoutRoute = require("./api/logout");
@@ -70,7 +71,8 @@ router.use("/api/logout", isAuthenticated, apiLogoutRoute);
 router.route("/api/v1/users/forgotPassword").post( forgotPassword);
 
 router.route("/api/v1/users/resetPassword/:token").patch (passwordReset);
-router.use("/api", isAuthenticated, apiCurrecyRoutes); 
+router.use("/api", isAuthenticated, apiCurrecyRoutes);
+router.use("/api", isAuthenticated, apiRoleRoute);
 
 
 // 404 route
