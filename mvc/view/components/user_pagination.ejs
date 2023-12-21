@@ -1,0 +1,166 @@
+<!-- pagination.ejs -->
+
+<!-- Container for displaying fetched documents -->
+<div class="container mt-4">
+    <div id="document-container" class="row"></div>
+  </div>
+  
+  <!-- Pagination controls -->
+  <nav aria-label="Pagination" class="mt-4">
+    <!-- Pagination controls... -->
+  </nav>
+  
+  <script>
+
+    // Example function to fetch data for a specific page
+    async function fetchDataForPage(pageNumber) {
+        try {
+            const response = await fetch(`/admin/api/v1/search?param=query&page=${pageNumber}`);
+            const data = await response.json();
+            return data; // Return fetched data
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+
+    // Example function to update UI with fetched data
+    function updateUIWithData(data) {
+        const documentContainer = document.getElementById('document-container');
+        documentContainer.innerHTML = ''; // Clear previous content
+
+        // Display fetched documents
+        data.docs.forEach((el) => {
+            // Create a clickable link to the user profile
+            const userProfileLink = document.createElement('a');
+            // todo!
+            userProfileLink.href = `/user/profile/${el.id}`; // Replace with actual user profile URL
+            userProfileLink.classList.add('text-decoration-none', 'text-dark');
+    
+            // Create a container for each user profile data
+            const userContainer = document.createElement('div');
+            userContainer.classList.add('container', 'my-5');
+    
+            // Populate user profile data
+            userContainer.innerHTML = `
+                <div class="container my-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <img src="${el.picture}" alt="Profile Picture of ${el.displayname}" class="img-fluid rounded-circle" style="max-width: 150px;">
+                                </div>
+                                <div class="col-md-9">
+                                    <h4 class="card-title"><b>Display Name:</b> ${el.displayname}</h4>
+                                    <p class="card-text"><b>Email:</b> ${el.email}</p>
+                                    <p class="card-text"><b>Username:</b> ${el.username}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+    
+            // Append user profile container to the clickable link
+            userProfileLink.appendChild(userContainer);
+    
+            // Append the clickable link to the document container
+            documentContainer.appendChild(userProfileLink);
+        });
+    
+
+        // Update pagination controls
+        const paginationInfo = document.getElementById('pagination-info');
+        paginationInfo.textContent = `Page ${data.page} of ${data.totalPages}`;
+    
+        const prevButton = document.getElementById('prev-page-btn');
+        prevButton.classList.toggle('disabled', data.page === 1);
+    
+        const nextButton = document.getElementById('next-page-btn');
+        nextButton.classList.toggle('disabled', data.page === data.totalPages);
+
+        // Example event listener for "Next Page" button
+        document.getElementById('next-page-btn').addEventListener('click', async () => {
+        currentPageNumber++; // Update current page number
+        const newData = await fetchDataForPage(currentPageNumber);
+        updateUIWithData(newData);
+        });
+
+        // Example event listener for "Previous Page" button
+        document.getElementById('prev-page-btn').addEventListener('click', async () => {
+        currentPageNumber--; // Update current page number
+        const newData = await fetchDataForPage(currentPageNumber);
+        updateUIWithData(newData);
+        });
+
+        // Example event listener for direct page number selection
+        document.getElementById('page-number-select').addEventListener('change', async (event) => {
+        const selectedPage = parseInt(event.target.value);
+        currentPageNumber = selectedPage; // Update current page number
+        const newData = await fetchDataForPage(selectedPage);
+        updateUIWithData(newData);
+        });
+    }
+  </script>
+  
+  
+  <!-- <script>
+
+            // Example function to fetch data for a specific page
+            async function fetchDataForPage(pageNumber) {
+            try {
+                const response = await fetch(`/admin/api/v1/search?param=query&page=${pageNumber}`);
+                const data = await response.json();
+                return data; // Return fetched data
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // Example function to update UI with fetched data
+        function updateUIWithData(data) {
+            const documentContainer = document.getElementById('document-container');
+            documentContainer.innerHTML = ''; // Clear previous content
+        
+            // Display fetched documents
+            data.docs.forEach((document) => {
+                const documentItem = document.createElement('div');
+                documentItem.textContent = document.name; // Change property to display as needed
+                documentContainer.appendChild(documentItem);
+            });
+        
+            // Update pagination controls
+            const paginationInfo = document.getElementById('pagination-info');
+            paginationInfo.textContent = `Page ${data.page} of ${data.totalPages}`;
+        
+            const prevButton = document.getElementById('prev-page-btn');
+            prevButton.classList.toggle('disabled', data.page === 1);
+        
+            const nextButton = document.getElementById('next-page-btn');
+            nextButton.classList.toggle('disabled', data.page === data.totalPages);
+
+            // Example event listener for "Next Page" button
+            document.getElementById('next-page-btn').addEventListener('click', async () => {
+            currentPageNumber++; // Update current page number
+            const newData = await fetchDataForPage(currentPageNumber);
+            updateUIWithData(newData);
+            });
+
+            // Example event listener for "Previous Page" button
+            document.getElementById('prev-page-btn').addEventListener('click', async () => {
+            currentPageNumber--; // Update current page number
+            const newData = await fetchDataForPage(currentPageNumber);
+            updateUIWithData(newData);
+            });
+
+            // Example event listener for direct page number selection
+            document.getElementById('page-number-select').addEventListener('change', async (event) => {
+            const selectedPage = parseInt(event.target.value);
+            currentPageNumber = selectedPage; // Update current page number
+            const newData = await fetchDataForPage(selectedPage);
+            updateUIWithData(newData);
+            });
+        }
+  </script> -->
+  
