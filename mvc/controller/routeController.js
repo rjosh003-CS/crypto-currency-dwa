@@ -1,3 +1,4 @@
+const { contextsKey } = require("express-validator/src/base");
 const { homePage, aboutPage, contactPage } = require("./dummy");
 
 // Controller for home route
@@ -46,9 +47,27 @@ const finance = (req, res) => {
 
 // Controller for profile route
 const profile = (req, res) => {
+  const success = req.flash("success");
+  const error = req.flash("error");
+  const errors = [ ];
+
+  // try-catch for parsing the json string to json object
+  try{
+    // check if the error is not undefined or empty string
+    if(typeof error !== undefined && error.length > 0) errors = JSON.parse(error);
+  }catch(err){ console.log(err)}
+
+  // convert json object to an array of json object
+  if (typeof errors === "object" && !Array.isArray(errors)) {
+    errors = [errors];
+  }
+
+  // creating json object that needs to passed with ejs file to render
   const data = { title: "Profile Page", currentYear: new Date().getFullYear() };
-  const newData = Object.assign({}, data, { user: req.user });
+  const newData = Object.assign({}, data, { user: req.user, errors: errors, success: success });
+
   console.log(newData);
+
   return res.status(200).render( "profile", newData);
 };
 
@@ -62,8 +81,15 @@ const dashboard = (req, res) => {
 
 // Controller for dashboard route
 const update_password_page = (req, res) => {
+  const error = req.flash("errors");
+  const success = req.flash("success");
+  console.log("->", error);
+  let errors = [];
+  try{
+    if(typeof error !== undefined && error.length > 0) errors = JSON.parse(error);
+  }catch(err){ console.log(err)}
   const data = { title: "Update Password", currentYear: new Date().getFullYear() };
-  const newData = Object.assign({}, data, { user: req.user });
+  const newData = Object.assign({}, data, { user: req.user, errors: errors, success: success  });
   console.log(newData);
   return res.status(200).render( "update_password", newData);
 };
