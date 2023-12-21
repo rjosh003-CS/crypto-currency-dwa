@@ -14,12 +14,7 @@ router.route("/:username/profile")
     next();
 });
 
-// @route: /user/:username/profile/edit
-router.route("/:username/profile/edit")
-.post((req, res, next)=> {
-    console.log(req.body);
-    next();
-});
+
 
 
 
