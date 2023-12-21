@@ -6,6 +6,7 @@ const axios = require('axios');
 const currencyModel = require('../../mvc/service/external_api/fetchCurrencies');
 
 // Route to fetch all currencies
+// @route: /api/currencies
 router.route('/currencies')
 .get( async (req, res) => {
   try {
@@ -17,6 +18,7 @@ router.route('/currencies')
 });
 
 // Route for auto-completion search
+// @route: /api/search
 router.get('/search', async (req, res) => {
   try {
     const query = req.query.q;
