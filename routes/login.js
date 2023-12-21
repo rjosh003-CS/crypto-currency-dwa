@@ -13,12 +13,6 @@ router
   .get((req, res, next) => {
     
     next();
-  }, login)
-
-  // @method: POST
-  // @description: post method for the login page
-  .post((req, res) => {
-    res.send("login page");
-  });
+  }, login);
 
 module.exports =  router ;
