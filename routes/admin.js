@@ -1,9 +1,14 @@
 const router = require("express").Router();
 
 // admin routes for user profiles
-router.route("/:username/admin/:param/")
-.get( async (req, res, next) => {
-    console.log(req.params.param);
+
+// @route: /api/admin/search
+router.route("/search")
+.get( async (req, res) => {
+
+  const {param} = req.body;
+
+    // try-catch block
     try {
         // Search for the user by name, username, or email
         const user = await User.findOne({
@@ -16,21 +21,16 @@ router.route("/:username/admin/:param/")
     
         // If no user found, return 404 error
         if (!user) {
-          return res.status(404).json({ message: 'User not found' });
+          return res.status(404).json({ error : {status: "error", message: 'User not found'} });
         }
-    
         // If user found, send the user data in the response
-        return res.json(user);
-      } catch (err) {
-        return res.status(500).json({ message: 'Server Error' });
+        return res.status(200).json(user);
+        
+    } catch (err) {
+      return res.status(500).json({ error : {status: "fail", message: 'Server Error'} });
     }
 });
 
-router.route("/:username/admin/:id/profile/")
-.get((req, res, next) => {
-    console.log(req.params.param);
-    next();
-});
 
 
 module.exports = router;
