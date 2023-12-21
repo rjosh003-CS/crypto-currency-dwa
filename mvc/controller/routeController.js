@@ -1,4 +1,3 @@
-const { contextsKey } = require("express-validator/src/base");
 const { homePage, aboutPage, contactPage, dashboardPage } = require("./dummy");
 
 // Controller for home route
@@ -7,7 +6,7 @@ const home = (req, res) => {
 
   const data = {
     title: "Home Page",
-    currentYear: new Date().getFullYear(),
+    currentYear: new Date().getFullYear()
   };
 
   const newData = Object.assign({}, data, { user: req.user, page: homePage });
@@ -77,6 +76,34 @@ const dashboard = (req, res) => {
   const newData = Object.assign({}, data, { user: req.user, page: dashboardPage });
   console.log(newData);
   return res.status(200).render( "dashboard", newData);
+};
+
+// Controller for dashboard route
+const page404 = (req, res) => {
+  const data = { title: "404 Page", currentYear: new Date().getFullYear() };
+  const newData = Object.assign({}, data, { user: req.user });
+  console.log(newData);
+  return res.status(200).render( "404page", newData);
+};
+
+// Controller for user_provile route
+const user_profile_view = (req, res) => {
+  const error = req.flash("errors");
+  const success = req.flash("success");
+  console.log("->", error);
+  let errors = [];
+
+  // try-catch block
+  try{
+    if(typeof error !== undefined && error.length > 0) errors = JSON.parse(error);
+  }catch(err){ console.log(err)}
+
+  
+  const data = { title: "User Profile", currentYear: new Date().getFullYear() };
+  const newData = Object.assign({}, data, { user: req.user, el: req.user, errors: errors, success: success  });
+  console.log(newData);
+
+  return res.status(200).render( "user_profile", newData);
 };
 
 // Controller for dashboard route
@@ -166,5 +193,7 @@ module.exports = {
   finance,
   profile,
   dashboard,
-  update_password_page
+  update_password_page,
+  page404,
+  user_profile_view
 };
