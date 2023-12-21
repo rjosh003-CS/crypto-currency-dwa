@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
       return next(err); 
     }
     // Logout for local strategy
-   req.session.destroy(); // Destroy the session
+  //  req.session.destroy(); // Destroy the session
   });
 
   return res.redirect("/"); // Redirect to home or login page
