@@ -19,6 +19,7 @@ const passwordUpdateRoute = require("./password-update");
 const userRoute = require("./user");
 
 // api routes
+const apiAdminSearchUserRoute = require("./api/admin");
 const apiRoleRoute = require("./api/role");
 const apiLoginRoute = require("./api/login");
 const apiRegisterRoute = require("./api/register");
@@ -48,8 +49,12 @@ router.use("/profile", isAuthenticated, profileRoute);
 router.use("/dashboard", isAuthenticated, dashboardRoute);
 router.use("/profile/password-update", isAuthenticated, passwordUpdateRoute);
 
+
 // admin routes
 router.use("/admin/user", isAuthenticated, userRoute);
+
+// api admin routes
+router.use("/api/v1/admin", isAuthenticated, apiAdminSearchUserRoute);
 
 // API Routes
 router.use("/register", isNotAuthenticated, registerRoute);
