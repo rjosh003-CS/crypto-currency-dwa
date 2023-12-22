@@ -7,21 +7,21 @@ exports.isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect(req.baseUrl);
+  res.redirect(process.env.BASE_URL);
 };
 
 exports.isNotAuthenticated = (req, res, next) => {
   if (!req.isAuthenticated()) {
     return next();
   }
-  res.redirect(req.baseUrl);
+  res.redirect(process.env.BASE_URL);
 };
 
 exports.restrict = (... role) => {
   return (req, res, next) => {
     if (!role.includes(req.user.role)) {
 
-      return res.redirect(req.baseUrl + "/page403");
+      return res.redirect(process.env.BASE_URL+ "/page403");
 
       // return next(
       //   new CustomError(
@@ -86,5 +86,5 @@ exports.passwordReset = asyncErrorHandler( async (req, res, next) => {
   user.passwordChangedAt = Date.now();
 
   await user.save();
-  res.redirect(req.baseUrl + '/api/login');
+  res.redirect(process.env.BASE_URL + '/api/login');
 });

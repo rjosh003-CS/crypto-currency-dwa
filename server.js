@@ -4,7 +4,6 @@ const dotenvExpand = require("dotenv-expand");
 
 dotenvExpand.expand({ parsed: envVars });
 
-
 const createApp = require("./app");
 const { connectToDatabase, createSessionStore } = require("./database");
 

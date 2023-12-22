@@ -62,7 +62,7 @@ router.post(
       console.log(formData);
       
       req.flash("validationError", JSON.stringify(formData));
-      res.redirect( req.baseUrl + "/register");
+      res.redirect( process.env.BASE_URL + "/register");
       console.log("redirect route to register");
       return;
     }
@@ -70,12 +70,13 @@ router.post(
     console.log("pre auth end");
     next();
   },
-  passport.authenticate("local-register", {
-    successRedirect: req.baseUrl + "/", // Redirect on successful registration
-    failureRedirect: req.baseUrl + "/register", // Redirect if registration fails
-    failureFlash: true
-  })
-);
+  async (req, res) => {
+    passport.authenticate('local-register', {
+      successRedirect: process.env.BASE_URL + '/', // Redirect on successful registration
+      failureRedirect: process.env.BASE_URL + '/register', // Redirect if registration fails
+      failureFlash: true,
+    })(req, res);
+  });
 
 
 module.exports = router;

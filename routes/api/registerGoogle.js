@@ -38,18 +38,12 @@ router.get(
       console.log(req.url);
       console.log(`callback url :  ${process.env.CALL_BACK_URL}`);
       console.log("callback url authentication to passport");
-      next();
-    },
 
-    // authenticating the response back from google
-    passport.authenticate("google", {
-      successRedirect: req.baseUrl + "/",
-      failureRedirect: req.baseUrl + "/login"
-    }),
-
-    // redirecting to the home page
-    function (req, res) {
-      res.redirect(req.baseUrl  + "/");
+      // authenticating the response back from google
+      passport.authenticate("google", {
+        successRedirect: process.env.BASE_URL + "/",
+        failureRedirect: process.env.BASE_URL + "/login"
+      })(req, res)
     }
   );
 

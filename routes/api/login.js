@@ -10,13 +10,13 @@ router.post(
   async (req, res, next) => {
     console.log("inside login api route");
     console.log(req.body);
-    next();
-  },
-  passport.authenticate('local-login', {
-  successRedirect: req.baseUrl + '/dashboard', // Redirect on successful login
-  failureRedirect: req.baseUrl + '/login', // Redirect if login fails
-  failureFlash: true,
-  })
-);
+
+    // passport authencation for login
+    passport.authenticate('local-login', {
+      successRedirect: process.env.BASE_URL + '/dashboard', // Redirect on successful login
+      failureRedirect: process.env.BASE_URL + '/login', // Redirect if login fails
+      failureFlash: true,
+    })(req, res); 
+});
 
 module.exports = router;

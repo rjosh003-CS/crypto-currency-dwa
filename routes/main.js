@@ -33,6 +33,7 @@ const apiCurrecyRoutes = require ("./api/currency");
 // Middleware for logging requests
 router.use((req, res, next) => {
     console.log(`${colour.blue}@method: ${colour.yellow}${req.method} \t ${colour.blue}@url: ${colour.yellow}${ req.originalUrl} ${colour.reset}`);
+    console.log(process.env.BASE_URL);
     next();
 });
 

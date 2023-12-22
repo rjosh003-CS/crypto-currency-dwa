@@ -61,7 +61,7 @@ router.route("/edit").post(async (req, res) => {
     const message = "Profile updated successfully";
     req.flash("success", message);
 
-    return res.redirect( req.baseUrl  + "/profile");
+    return res.redirect( process.env.BASE_URL  + "/profile");
     // res.status(200).json(updatedUser);
   } catch (err) {
     console.error(err);
