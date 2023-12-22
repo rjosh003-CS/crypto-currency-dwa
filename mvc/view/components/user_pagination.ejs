@@ -7,15 +7,30 @@
   
   <!-- Pagination controls -->
   <nav aria-label="Pagination" class="mt-4">
-    <!-- Pagination controls... -->
-  </nav>
+    <ul class="pagination justify-content-center" id="pagination-controls">
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true" class="fa fa-chevron-left"></span>
+            </a>
+        </li>
+        <li class="page-item" id="pagination-info">
+            Page ${data.page} of ${data.totalPages}
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true" class="fa fa-chevron-right"></span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
   
-  <script>
+  <!-- <script>
 
     // Example function to fetch data for a specific page
     async function fetchDataForPage(pageNumber) {
         try {
-            const response = await fetch(`/admin/api/v1/search?param=query&page=${pageNumber}`);
+            const response = await fetch(`/api/v1/admin/search?param=query&page=${pageNumber}`);
             const data = await response.json();
             return data; // Return fetched data
         } catch (error) {
@@ -24,7 +39,7 @@
     }
 
 
-    // Example function to update UI with fetched data
+   // Example function to update UI with fetched data
     function updateUIWithData(data) {
         const documentContainer = document.getElementById('document-container');
         documentContainer.innerHTML = ''; // Clear previous content
@@ -33,14 +48,13 @@
         data.docs.forEach((el) => {
             // Create a clickable link to the user profile
             const userProfileLink = document.createElement('a');
-            // todo!
             userProfileLink.href = `/user/profile/${el.id}`; // Replace with actual user profile URL
             userProfileLink.classList.add('text-decoration-none', 'text-dark');
-    
+
             // Create a container for each user profile data
             const userContainer = document.createElement('div');
             userContainer.classList.add('container', 'my-5');
-    
+
             // Populate user profile data
             userContainer.innerHTML = `
                 <div class="container my-5">
@@ -61,106 +75,68 @@
                 </div>
             `;
 
-    
             // Append user profile container to the clickable link
             userProfileLink.appendChild(userContainer);
-    
+
             // Append the clickable link to the document container
             documentContainer.appendChild(userProfileLink);
         });
-    
 
-        // Update pagination controls
+
+
+         // Update pagination controls with Bootstrap 5 classes and Font Awesome icons
+
         const paginationInfo = document.getElementById('pagination-info');
-        paginationInfo.textContent = `Page ${data.page} of ${data.totalPages}`;
-    
+        paginationInfo.innerHTML = `Page ${data.page} of ${data.totalPages}`;
+
         const prevButton = document.getElementById('prev-page-btn');
         prevButton.classList.toggle('disabled', data.page === 1);
-    
+        prevButton.querySelector('a').setAttribute('aria-label', 'Previous');
+
         const nextButton = document.getElementById('next-page-btn');
         nextButton.classList.toggle('disabled', data.page === data.totalPages);
+        nextButton.querySelector('a').setAttribute('aria-label', 'Next');
+
+        // Update Font Awesome icons for pagination controls
+        prevButton.querySelector('span').classList.add('fa', 'fa-chevron-left');
+        nextButton.querySelector('span').classList.add('fa', 'fa-chevron-right');
+
+
+        // // Update pagination controls
+        // const paginationInfo = document.getElementById('pagination-info');
+        // paginationInfo.textContent = `Page ${data.page} of ${data.totalPages}`;
+
+        // const prevButton = document.getElementById('prev-page-btn');
+        // prevButton.classList.toggle('disabled', data.page === 1);
+
+        // const nextButton = document.getElementById('next-page-btn');
+        // nextButton.classList.toggle('disabled', data.page === data.totalPages);
+
+
 
         // Example event listener for "Next Page" button
         document.getElementById('next-page-btn').addEventListener('click', async () => {
-        currentPageNumber++; // Update current page number
-        const newData = await fetchDataForPage(currentPageNumber);
-        updateUIWithData(newData);
+            currentPageNumber++; // Update current page number
+            const newData = await fetchDataForPage(currentPageNumber);
+            updateUIWithData(newData);
         });
 
         // Example event listener for "Previous Page" button
         document.getElementById('prev-page-btn').addEventListener('click', async () => {
-        currentPageNumber--; // Update current page number
-        const newData = await fetchDataForPage(currentPageNumber);
-        updateUIWithData(newData);
+            currentPageNumber--; // Update current page number
+            const newData = await fetchDataForPage(currentPageNumber);
+            updateUIWithData(newData);
         });
 
         // Example event listener for direct page number selection
         document.getElementById('page-number-select').addEventListener('change', async (event) => {
-        const selectedPage = parseInt(event.target.value);
-        currentPageNumber = selectedPage; // Update current page number
-        const newData = await fetchDataForPage(selectedPage);
-        updateUIWithData(newData);
-        });
-    }
-  </script>
-  
-  
-  <!-- <script>
-
-            // Example function to fetch data for a specific page
-            async function fetchDataForPage(pageNumber) {
-            try {
-                const response = await fetch(`/admin/api/v1/search?param=query&page=${pageNumber}`);
-                const data = await response.json();
-                return data; // Return fetched data
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        }
-
-        // Example function to update UI with fetched data
-        function updateUIWithData(data) {
-            const documentContainer = document.getElementById('document-container');
-            documentContainer.innerHTML = ''; // Clear previous content
-        
-            // Display fetched documents
-            data.docs.forEach((document) => {
-                const documentItem = document.createElement('div');
-                documentItem.textContent = document.name; // Change property to display as needed
-                documentContainer.appendChild(documentItem);
-            });
-        
-            // Update pagination controls
-            const paginationInfo = document.getElementById('pagination-info');
-            paginationInfo.textContent = `Page ${data.page} of ${data.totalPages}`;
-        
-            const prevButton = document.getElementById('prev-page-btn');
-            prevButton.classList.toggle('disabled', data.page === 1);
-        
-            const nextButton = document.getElementById('next-page-btn');
-            nextButton.classList.toggle('disabled', data.page === data.totalPages);
-
-            // Example event listener for "Next Page" button
-            document.getElementById('next-page-btn').addEventListener('click', async () => {
-            currentPageNumber++; // Update current page number
-            const newData = await fetchDataForPage(currentPageNumber);
-            updateUIWithData(newData);
-            });
-
-            // Example event listener for "Previous Page" button
-            document.getElementById('prev-page-btn').addEventListener('click', async () => {
-            currentPageNumber--; // Update current page number
-            const newData = await fetchDataForPage(currentPageNumber);
-            updateUIWithData(newData);
-            });
-
-            // Example event listener for direct page number selection
-            document.getElementById('page-number-select').addEventListener('change', async (event) => {
             const selectedPage = parseInt(event.target.value);
             currentPageNumber = selectedPage; // Update current page number
             const newData = await fetchDataForPage(selectedPage);
             updateUIWithData(newData);
-            });
-        }
+        });
+
+    }
+
   </script> -->
   
