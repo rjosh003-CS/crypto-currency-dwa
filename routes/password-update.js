@@ -25,7 +25,7 @@ router
         const strData = JSON.stringify([data]);
         console.log(strData);
         req.flash("errors", strData);
-        return res.redirect("/profile/password-update");
+        return res.redirect( req.baseUrl+ "/profile/password-update");
 
         // throw new Error(message);
       }
@@ -39,7 +39,7 @@ router
         const strData = JSON.stringify([data]);
         console.log(strData);
         req.flash("errors", strData);
-        return res.redirect("/profile/password-update");
+        return res.redirect( req.baseUrl + "/profile/password-update");
 
         // throw new Error(message);
       }
@@ -55,7 +55,7 @@ router
         const strData = JSON.stringify([data]);
         console.log(strData);
         req.flash("errors", strData);
-        return res.redirect("/profile/password-update");
+        return res.redirect( req.baseUrl  + "/profile/password-update");
 
         // throw new Error(message);
       }
@@ -71,7 +71,7 @@ router
         const strData = JSON.stringify([data]);
         console.log(strData);
         req.flash("errors", strData);
-        return res.redirect("/profile/password-update");
+        return res.redirect( req.baseUrl + "/profile/password-update" );
 
         // throw new Error(message);
       }
@@ -94,7 +94,7 @@ router
         // Flash success message and redirect to /profile route
         const message = "Password updated successfully";
         req.flash("success", message);
-        return res.redirect("/profile");
+        return res.redirect( req.baseUrl  + "/profile");
       } else {
         console.log("Password update failed");
         // Handle failure...
@@ -105,7 +105,7 @@ router
         const strData = JSON.stringify([data]);
         console.log(strData);
         req.flash("errors", strData);
-        return res.redirect("/profile/password-update");
+        return res.redirect( req.baseUrl + "/profile/password-update");
       }
       
       
@@ -119,7 +119,7 @@ router
       const strData = JSON.stringify([data]);
       console.log(strData);
       req.flash("errors", strData);
-      return res.redirect("/profile/password-update");
+      return res.redirect( req.baseUrl  + "/profile/password-update");
 
       // throw new Error(message);
     }

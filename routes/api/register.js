@@ -62,7 +62,7 @@ router.post(
       console.log(formData);
       
       req.flash("validationError", JSON.stringify(formData));
-      res.redirect("/register");
+      res.redirect( req.baseUrl + "/register");
       console.log("redirect route to register");
       return;
     }

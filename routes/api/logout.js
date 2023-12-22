@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
   //  req.session.destroy(); // Destroy the session
   });
 
-  return res.redirect("/"); // Redirect to home or login page
+  return res.redirect( req.baseUrl  + "/"); // Redirect to home or login page
 });
 
 

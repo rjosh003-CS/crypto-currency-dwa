@@ -49,7 +49,7 @@ router.get(
 
     // redirecting to the home page
     function (req, res) {
-      res.redirect("/");
+      res.redirect(req.baseUrl  + "/");
     }
   );
 

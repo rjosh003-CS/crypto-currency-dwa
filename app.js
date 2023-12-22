@@ -35,7 +35,7 @@ const createApp = (sessionStore) => {
   
   // Set up static files
   app.use("/public", express.static(path.join(__dirname, "/public")));
-  
+  console.log(path.join(__dirname, "/public"));  
   // defining the view folder path
   app.set("views", path.join(__dirname, "/mvc/view"));
   
