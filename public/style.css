@@ -139,10 +139,27 @@ body.dark-mode .sidebar-link {
 .sidebar-item{
   padding: 10px 0;
 }
+
+/* custom style */
+.reduce-padding {
+  padding: 0; /* Adjust this value as needed */
+}
+ /* my container */
+ .my-container{
+  max-width: 1200px;
+  margin: 0 auto;
+ }
+
 /* Toggle button styling */
 #sidebarToggle {
   margin-left: 250px; /* Matches sidebar width */
 }
+
+/* pagination default */
+#pagination-controls {
+  display: none;
+}
+
 
    /* h1.mytitle {
     color: #ADA8B6 !important;
