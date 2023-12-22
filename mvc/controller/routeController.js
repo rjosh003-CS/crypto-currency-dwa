@@ -112,13 +112,36 @@ const update_password_page = (req, res) => {
   const success = req.flash("success");
   console.log("->", error);
   let errors = [];
+
+  // try - catch
   try{
     if(typeof error !== undefined && error.length > 0) errors = JSON.parse(error);
   }catch(err){ console.log(err)}
+
   const data = { title: "Update Password", currentYear: new Date().getFullYear() };
   const newData = Object.assign({}, data, { user: req.user, errors: errors, success: success  });
   console.log(newData);
   return res.status(200).render( "update_password", newData);
+};
+
+// Controller for  admin search route
+const admin_search_page = (req, res) => {
+
+  const error = req.flash("errors");
+  const success = req.flash("success");
+  console.log("->", error);
+  let errors = [];
+
+  // try - catch 
+  try{
+    if(typeof error !== undefined && error.length > 0) errors = JSON.parse(error);
+  }catch(err){ console.log(err)}
+
+  
+  const data = { title: "User Search Page", currentYear: new Date().getFullYear() };
+  const newData = Object.assign({}, data, { user: req.user, errors: errors, success: success  });
+  console.log(newData);
+  return res.status(200).render( "admin_user_search", newData);
 };
 
 // Controller for register route
@@ -195,5 +218,6 @@ module.exports = {
   dashboard,
   update_password_page,
   page404,
-  user_profile_view
+  user_profile_view,
+  admin_search_page
 };
