@@ -16,7 +16,7 @@ const financeRoute = require("./finance");
 const profileRoute = require("./profile");
 const dashboardRoute = require("./dashboard");
 const passwordUpdateRoute = require("./password-update");
-const userRoute = require("./user");
+const userRoute = require("./adminUser");
 
 // api routes
 const apiAdminSearchUserRoute = require("./api/admin");
