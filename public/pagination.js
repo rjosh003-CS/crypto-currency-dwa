@@ -89,7 +89,7 @@ function updateUIWithData(data) {
     data.docs.forEach((el) => {
         // Create a clickable link to the user profile
         const userProfileLink = document.createElement('a');
-        userProfileLink.href = `/user/profile/${el.id}`; // Replace with actual user profile URL
+        userProfileLink.href = `/admin/user/${el.username}/profile`; // Replace with actual user profile URL
         userProfileLink.classList.add(  'text-decoration-none', 'text-dark', 'reduce-padding' );
 
         // Create a container for each user profile data
