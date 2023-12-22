@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<%- include("./components/head.ejs") %>
+<body>
+    <%- include("./components/header") %>
+    
+    <main>
+        <div class="container my-1 text-center"> <!-- Added my-5 for vertical margin -->
+            <% if (typeof title !== 'undefined' && title){ %>
+                <h1 class="display-4"><%= title %></h1>
+                <% } %>
+        </div>
+
+        <div class="container text-center"> 
+            <%- include("./components/error.ejs") %>
+            
+            <%- include("./components/user_search_bar.ejs") %>
+            <%- include("./components/user_pagination.ejs") %>
+        </div>
+
+    </main>
+
+    <%- include("./components/footer.ejs") %>
+
+    <script defer src="../../public/pagination.js"></script>
+</body>
+</html>
