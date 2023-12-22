@@ -1,4 +1,5 @@
 const { homePage, aboutPage, contactPage, dashboardPage } = require("./dummy");
+const User = require("../models/userSchema");
 
 // Controller for home route
 const home = (req, res) => {
@@ -87,24 +88,30 @@ const page404 = (req, res) => {
 };
 
 // Controller for user_provile route
-const user_profile_view = (req, res) => {
-  const error = req.flash("errors");
-  const success = req.flash("success");
-  console.log("->", error);
-  let errors = [];
+const user_profile_view = async (req, res) => {
+  const username = req.params.username;
+  console.log(username);
 
-  // try-catch block
-  try{
-    if(typeof error !== undefined && error.length > 0) errors = JSON.parse(error);
-  }catch(err){ console.log(err)}
+  let user = null;
+  const errors = [];
+  try {
+      user = await User.findOne({ username: username });
+      if (!user) {
+          errors.push({ state: "fail", message: "User not found!" });
+      }
+  } catch (err) {
+      errors.push({ state: "fail", message: err.message });
+  }
 
-  
+  console.log("->", user);
+
   const data = { title: "User Profile", currentYear: new Date().getFullYear() };
-  const newData = Object.assign({}, data, { user: req.user, el: req.user, errors: errors, success: success  });
+  const newData = Object.assign({}, data, { user: req.user, el: user, errors: errors });
   console.log(newData);
 
-  return res.status(200).render( "user_profile", newData);
+  return res.status(200).render("user_profile", newData);
 };
+
 
 // Controller for dashboard route
 const update_password_page = (req, res) => {
