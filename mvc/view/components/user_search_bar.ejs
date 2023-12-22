@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="row justify-content-center"> <!-- Center the columns -->
+      <div class="col-md-8"> <!-- Adjust the column size as needed -->
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" id="search-input" placeholder="Search..." autocomplete="on">
+          <button id="search-button" class="btn btn-primary" type="button">Search</button>
+        </div>
+        <div id="autocomplete-results" class="list-group"></div>
+      </div>
+    </div>
+  </div>  
+  
+  
+  <!-- <script>
+    const searchInput = document.getElementById('search-input');
+    const autocompleteResults = document.getElementById('autocomplete-results');
+
+    // Autocomplete functionality
+    searchInput.addEventListener('input', async () => {
+    const searchTerm = searchInput.value.trim();
+    
+    try {
+        const autocompleteResponse = await fetch(`/api/v1/admin/autocomplete?term=${searchTerm}`);
+        const autocompleteData = await autocompleteResponse.json();
+
+        autocompleteResults.innerHTML = ''; // Clear previous results
+        
+        autocompleteData.forEach(result => {
+            const resultItem = document.createElement('div');
+            resultItem.classList.add('autocomplete-result', 'list-group-item', 'list-group-item-action'); // Bootstrap 5 classes
+
+            // Construct the display text with displayname, username, and email
+            const displayText = `${result.displayname} (${result.username}) - ${result.email}`;
+            resultItem.textContent = displayText;
+
+            resultItem.addEventListener('click', () => {
+                // Add the selected data to the search input
+                searchInput.value = result.displayname; // Change this to the desired field
+            });
+
+            autocompleteResults.appendChild(resultItem);
+        });
+
+
+    } catch (error) {
+        console.error('Autocomplete API Error:', error);
+    }
+    });
+
+
+    
+    // pagination controller
+    const paginationControls = document.getElementById('pagination-controls');
+    // Hide pagination controls initially
+    paginationControls.style.display = 'none';
+
+    // Search button functionality
+    const searchButton = document.getElementById('search-button');
+    searchButton.addEventListener('click', async () => {
+        const searchTerm = searchInput.value.trim();
+        console.log(searchTerm);
+
+    try {
+        const searchResponse = await fetch(`/api/v1/admin/search?param=${searchTerm}`); // Update the endpoint URL
+        const searchResults = await searchResponse.json();
+        
+        // Handle the search results here
+        console.log('Search Results:', searchResults);
+        // Update UI or perform further actions with the search results
+        updateUIWithData(searchResults);
+    } catch (error) {
+        console.error('Search API Error:', error);
+    }
+
+        // Show pagination controls after search
+        paginationControls.style.display = 'block';
+    });
+
+  </script> -->
+  
