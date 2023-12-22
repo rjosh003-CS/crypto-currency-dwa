@@ -4,7 +4,7 @@ const router = require("express").Router();
 const { isAuthenticated, isNotAuthenticated, restrict, forgotPassword, passwordReset}  = require("./helper_function");
 const globalErroHandler = require("../mvc/controller/errorController");
 const CustomError = require ("../utils/CustomError");
-const { page404 } = require("../mvc/controller/routeController");
+const { page404, page403 } = require("../mvc/controller/routeController");
 
 // web routes
 const aboutRoute = require("./about");
@@ -51,7 +51,7 @@ router.use("/profile/password-update", isAuthenticated, passwordUpdateRoute);
 
 
 // admin routes
-router.use("/admin/user", isAuthenticated, userRoute);
+router.use("/admin/user", isAuthenticated, restrict("admin"), userRoute);
 
 // api admin routes
 router.use("/api/v1/admin", isAuthenticated, apiAdminSearchUserRoute);
@@ -85,6 +85,8 @@ router.get("/success", (req, res) => {
 router.get("/failure", (req, res) => {
     res.status(401).send( "401page" , {message:"Login Failed!"});
 });
+
+router.get("/page403", page403);
 
 // 404 route
 router.route("*")
