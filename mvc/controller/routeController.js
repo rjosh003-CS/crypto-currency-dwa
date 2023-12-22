@@ -3,17 +3,13 @@ const User = require("../models/userSchema");
 
 // Controller for home route
 const home = (req, res) => {
-  console.log(homePage);
 
   const data = {
     title: "Home Page",
     currentYear: new Date().getFullYear()
   };
-
   const newData = Object.assign({}, data, { user: req.user, page: homePage });
-
-  console.log(newData);
-
+  // console.log(newData);
   return res.status(200).render("index", newData);
 };
 
@@ -21,7 +17,7 @@ const home = (req, res) => {
 const about = (req, res) => {
   const data = { title: "About Page", currentYear: new Date().getFullYear() };
   const newData = Object.assign({}, data, { user: req.user, page: aboutPage });
-  console.log(newData);
+  // console.log(newData);
   return res.status(200).render("about", newData);
 };
 
@@ -32,7 +28,7 @@ const contact = (req, res) => {
     user: req.user,
     page: contactPage
   });
-  console.log(newData);
+  // console.log(newData);
   return res.status(200).render("contact", newData);
 };
 
@@ -41,7 +37,7 @@ const finance = (req, res) => {
   const data = { title: "Finance Page", currentYear: new Date().getFullYear() };
   const errors = req.errors ? JSON.parse(req.errors) : undefined;
   const newData = Object.assign({}, data, { user: req.user, errors: errors});
-  console.log(newData);
+  // console.log(newData);
   return res.status(200).render("finance", newData);
 };
 
@@ -66,7 +62,7 @@ const profile = (req, res) => {
   const data = { title: "Profile Page", currentYear: new Date().getFullYear() };
   const newData = Object.assign({}, data, { user: req.user, errors: errors, success: success });
 
-  console.log(newData);
+  // console.log(newData);
 
   return res.status(200).render( "profile", newData);
 };
@@ -75,7 +71,7 @@ const profile = (req, res) => {
 const dashboard = (req, res) => {
   const data = { title: "Dashboard Page", currentYear: new Date().getFullYear() };
   const newData = Object.assign({}, data, { user: req.user, page: dashboardPage });
-  console.log(newData);
+  // console.log(newData);
   return res.status(200).render( "dashboard", newData);
 };
 
@@ -83,7 +79,7 @@ const dashboard = (req, res) => {
 const page403 = (req, res) => {
   const data = { title: "403 Page", currentYear: new Date().getFullYear() };
   const newData = Object.assign({}, data, { user: req.user });
-  console.log(newData);
+  // console.log(newData);
   return res.status(200).render( "403page", newData);
 };
 
@@ -91,7 +87,7 @@ const page403 = (req, res) => {
 const page404 = (req, res) => {
   const data = { title: "404 Page", currentYear: new Date().getFullYear() };
   const newData = Object.assign({}, data, { user: req.user });
-  console.log(newData);
+  // console.log(newData);
   return res.status(200).render( "404page", newData);
 };
 
@@ -111,11 +107,11 @@ const user_profile_view = async (req, res) => {
       errors.push({ state: "fail", message: err.message });
   }
 
-  console.log("->", user);
+  // console.log("->", user);
 
   const data = { title: "User Profile", currentYear: new Date().getFullYear() };
   const newData = Object.assign({}, data, { user: req.user, el: user, errors: errors });
-  console.log(newData);
+  // console.log(newData);
 
   return res.status(200).render("user_profile", newData);
 };
@@ -125,7 +121,7 @@ const user_profile_view = async (req, res) => {
 const update_password_page = (req, res) => {
   const error = req.flash("errors");
   const success = req.flash("success");
-  console.log("->", error);
+  // console.log("->", error);
   let errors = [];
 
   // try - catch
@@ -135,7 +131,7 @@ const update_password_page = (req, res) => {
 
   const data = { title: "Update Password", currentYear: new Date().getFullYear() };
   const newData = Object.assign({}, data, { user: req.user, errors: errors, success: success  });
-  console.log(newData);
+  // console.log(newData);
   return res.status(200).render( "update_password", newData);
 };
 
@@ -144,7 +140,7 @@ const admin_search_page = (req, res) => {
 
   const error = req.flash("errors");
   const success = req.flash("success");
-  console.log("->", error);
+  // console.log("->", error);
   let errors = [];
 
   // try - catch 
@@ -155,7 +151,7 @@ const admin_search_page = (req, res) => {
   
   const data = { title: "User Search Page", currentYear: new Date().getFullYear() };
   const newData = Object.assign({}, data, { user: req.user, errors: errors, success: success  });
-  console.log(newData);
+  // console.log(newData);
   return res.status(200).render( "admin_user_search", newData);
 };
 
@@ -195,9 +191,9 @@ const register = (req, res) => {
       errors = value.errors;
     }catch(err){}
 
-  console.log("->",initial_value);
+  // console.log("->",initial_value);
   const newData = Object.assign({}, data, {formData : initial_value, errors: errors});
-  console.log(newData);
+  // console.log(newData);
   return res.status(200).render("register", newData);
 };
 
@@ -217,7 +213,7 @@ const login = (req, res) => {
   const error = req.flash("error"); 
 
   const newData = Object.assign({}, data, {formData: initial_value, errors: error});
-  console.log(newData);
+  // console.log(newData);
   return res.status(200).render("login", newData);
 };
 

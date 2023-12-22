@@ -17,7 +17,7 @@ user_profile_view
 // @route: /admin/user/search
 router.route("/search")
 .get((req, res, next) => {
-    console.log("inside the /admin/search");
+    // console.log("inside the /admin/search");
     next();
 },
 admin_search_page

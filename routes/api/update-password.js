@@ -6,7 +6,7 @@ const { encrypt, compare } = require("../../mvc/controller/helperController");
 // @route /api/profile/update-password
 router.route("/").post(async (req, res) => {
   const { oldPassword, newPassword, confirmPassword, email } = req.body;
-  console.log("->", req.body);
+  // console.log("->", req.body);
 
   // Check if newPassword and confirmPassword match
   if (newPassword !== confirmPassword) {
