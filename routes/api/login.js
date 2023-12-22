@@ -13,8 +13,8 @@ router.post(
     next();
   },
   passport.authenticate('local-login', {
-  successRedirect: '/dashboard', // Redirect on successful login
-  failureRedirect: '/login', // Redirect if login fails
+  successRedirect: req.baseUrl + '/dashboard', // Redirect on successful login
+  failureRedirect: req.baseUrl + '/login', // Redirect if login fails
   failureFlash: true,
   })
 );

@@ -71,8 +71,8 @@ router.post(
     next();
   },
   passport.authenticate("local-register", {
-    successRedirect: "/", // Redirect on successful registration
-    failureRedirect: "/register", // Redirect if registration fails
+    successRedirect: req.baseUrl + "/", // Redirect on successful registration
+    failureRedirect: req.baseUrl + "/register", // Redirect if registration fails
     failureFlash: true
   })
 );

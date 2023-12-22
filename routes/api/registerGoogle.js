@@ -43,8 +43,8 @@ router.get(
 
     // authenticating the response back from google
     passport.authenticate("google", {
-      successRedirect: "/",
-      failureRedirect: "/login"
+      successRedirect: req.baseUrl + "/",
+      failureRedirect: req.baseUrl + "/login"
     }),
 
     // redirecting to the home page
