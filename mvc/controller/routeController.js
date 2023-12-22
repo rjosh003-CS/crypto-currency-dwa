@@ -80,6 +80,14 @@ const dashboard = (req, res) => {
 };
 
 // Controller for dashboard route
+const page403 = (req, res) => {
+  const data = { title: "403 Page", currentYear: new Date().getFullYear() };
+  const newData = Object.assign({}, data, { user: req.user });
+  console.log(newData);
+  return res.status(200).render( "403page", newData);
+};
+
+// Controller for dashboard route
 const page404 = (req, res) => {
   const data = { title: "404 Page", currentYear: new Date().getFullYear() };
   const newData = Object.assign({}, data, { user: req.user });
@@ -224,6 +232,7 @@ module.exports = {
   profile,
   dashboard,
   update_password_page,
+  page403,
   page404,
   user_profile_view,
   admin_search_page
