@@ -24,7 +24,13 @@ const local_login = new LocalStrategy(
     req.session.email = req.body.email;
 
     try {
-      const user = await User.findOne({ email });
+      // const user = await User.findOne({ email });
+      const user = await User.findOne({
+        $or: [
+          { email : email }, // Match by email
+          { username: email } // Match by username
+        ]
+      });      
 
       let isMatch = null;
 
