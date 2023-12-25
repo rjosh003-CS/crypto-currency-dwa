@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-<%- include("./components/head.ejs") %>
+<html lang="en">
+    <%- include("./components/head.ejs") %>
 <body>
     <%- include("./components/header") %>
 
@@ -8,12 +8,12 @@
         <div class="container my-5 text-center">
             <h1 class="display-4 mt-4" style="color: red;">404 - Page Not Found!</h1> <!-- Added inline style for red color -->
             <p class="lead">Sorry, the page you are looking for could not be found.</p>
-            <img src="../../public/image/cat404.jpg" class="img-fluid" alt="Down Page Image">
+            <img src="/public/image/cat404.jpg" class="img-fluid" alt="Down Page Image">
         </div>
     </main>
 
     <%- include("./components/footer.ejs") %>
-    <script defer src="../../public/js/script.js"></script>
+
 
 </body>
 </html>
