@@ -8,7 +8,7 @@ searchInput.addEventListener('input', async () => {
     const searchTerm = searchInput.value.trim();
 
     try {
-        const autocompleteResponse = await fetch(`/api/v1/admin/autocomplete?term=${searchTerm}`);
+        const autocompleteResponse = await fetch(`https://doc.gold.ac.uk/usr/642/api/v1/admin/autocomplete?term=${searchTerm}`);
         const autocompleteData = await autocompleteResponse.json();
 
         autocompleteResults.innerHTML = ''; // Clear previous results
@@ -51,7 +51,7 @@ searchButton.addEventListener('click', async () => {
     console.log(searchTerm);
 
 try {
-    const searchResponse = await fetch(`/api/v1/admin/search?param=${searchTerm}`); // Update the endpoint URL
+    const searchResponse = await fetch(`https://doc.gold.ac.uk/usr/642/api/v1/admin/search?param=${searchTerm}`); // Update the endpoint URL
     const searchResults = await searchResponse.json();
     
     // Handle the search results here
@@ -71,7 +71,7 @@ try {
 // Example function to fetch data for a specific page
 async function fetchDataForPage(pageNumber) {
     try {
-        const response = await fetch(`/api/v1/admin/search?param=query&page=${pageNumber}`);
+        const response = await fetch(`https://doc.gold.ac.uk/usr/642/api/v1/admin/search?param=query&page=${pageNumber}`);
         const data = await response.json();
         return data; // Return fetched data
     } catch (error) {
@@ -89,7 +89,7 @@ function updateUIWithData(data) {
     data.docs.forEach((el) => {
         // Create a clickable link to the user profile
         const userProfileLink = document.createElement('a');
-        userProfileLink.href = `/admin/user/${el.username}/profile`; // Replace with actual user profile URL
+        userProfileLink.href = `https://doc.gold.ac.uk/usr/642/admin/user/${el.username}/profile`; // Replace with actual user profile URL
         userProfileLink.classList.add(  'text-decoration-none', 'text-dark', 'reduce-padding' );
 
         // Create a container for each user profile data
