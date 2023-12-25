@@ -40,7 +40,16 @@ const createApp = (sessionStore) => {
   app.use(compression());
 
   // Set up static files
-  app.use("/public", express.static(path.join(__dirname, "public")));
+  app.use(`/public`, express.static(path.join(__dirname, "public"), {
+    setHeaders: (res, path) => {
+      if (path.endsWith('.js')) {
+          res.setHeader('Content-Type', 'application/javascript');
+      }
+      if (path.endsWith('.css')) {
+          res.setHeader('Content-Type', 'text/css');
+      }
+  }
+  }));
 
   
   // defining the view folder path
