@@ -26,7 +26,7 @@
                 searchInput.addEventListener('input', () => {
                     const inputText = searchInput.value;
                     if (inputText.length >= 2) {
-                        fetch(`/api/search?q=${inputText}`) // Send input as query parameter to the backend route
+                        fetch(`https://doc.gold.ac.uk/usr/642/api/search?q=${inputText}`) // Send input as query parameter to the backend route
                             .then(response => response.json())
                             .then(data => {
                                 // Display the suggestions in a dropdown or autocomplete list
@@ -59,3 +59,11 @@
 
 
             </script>
+
+        </div>
+    </main>
+
+    <!-- footer -->
+    <%- include("./components/footer.ejs") %>
+</body>
+</html>
