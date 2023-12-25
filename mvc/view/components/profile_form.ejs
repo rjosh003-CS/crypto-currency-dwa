@@ -65,7 +65,7 @@
 </form>
 
 <script>
-    fetch('/api/roles')
+    fetch('https://doc.gold.ac.uk/usr/642/api/roles')
         .then(response => response.json())
         .then(data => {
             const enumValues = data.enumValues;
