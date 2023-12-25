@@ -20,6 +20,8 @@ MONGODB_URL = <mongodb_url>
 const ejs = require("ejs");
 const path = require("path");
 const bodyParser = require("body-parser");
+const compression = require("compression");
+
 const flash = require("express-flash");
 const cors = require("cors");
 
@@ -30,13 +32,17 @@ const express = require("express");
 const session = require("express-session");
 
 const createApp = (sessionStore) => {
-
+  
   // setting up express
   const app = express();
   
+  // Using compression middleware
+  app.use(compression());
+
   // Set up static files
-  app.use("/public", express.static(path.join(__dirname, "/public")));
-  console.log(path.join(__dirname, "/public"));  
+  app.use("/public", express.static(path.join(__dirname, "public")));
+
+  
   // defining the view folder path
   app.set("views", path.join(__dirname, "/mvc/view"));
   
@@ -54,7 +60,7 @@ const createApp = (sessionStore) => {
     );
     
     // Use express.urlencoded() for parsing URL-encoded data
-
+    
     // app.use(express.urlencoded({ extended: true }));
     app.use(bodyParser.json()); // for parsing application/json
     app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -64,21 +70,23 @@ const createApp = (sessionStore) => {
     const passport = require("./mvc/service/passport/passport_main.js");
     
     app.use(flash());
-
+    
     // Passport initialization middleware
     app.use(passport.initialize());
     app.use(passport.session());
     
     // setting up view engine
     app.set("view engine", "ejs");
-
+    
+    //       https://doc.gold.ac.uk/usr/642
+    
     const corsOptions = {
-      origin: ["https://api.coingecko.com/api/v3/coins/list"], // Allow requests from this origin
-      methods: "GET,POST" // Allow specific HTTP methods
+      origin: 'https://api.coingecko.com',
     };
-
+    
     app.use(cors(corsOptions));
-
+    
+    
   // importing routes
   const mainRoutes = require("./routes/main"); // updated import statement
   // using the routes in our application
