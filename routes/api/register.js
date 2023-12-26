@@ -71,12 +71,15 @@ router.post(
     next();
   },
   async (req, res) => {
+    console.log("local-regiter auth start");
     passport.authenticate('local-register', {
-      successRedirect: process.env.BASE_URL + '/', // Redirect on successful registration
-      failureRedirect: process.env.BASE_URL + '/register', // Redirect if registration fails
+      successRedirect:  'https://doc.gold.ac.uk/usr/642/profile', // Redirect on successful registration
+      failureRedirect:  'https://doc.gold.ac.uk/usr/642/register', // Redirect if registration fails
       failureFlash: true,
     })(req, res);
-  });
+  }
+  
+  );
 
 
 module.exports = router;

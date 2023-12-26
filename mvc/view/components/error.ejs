@@ -1,25 +1,25 @@
-<% if (typeof errors !=='undefined' && errors.length> 0) { %>
+<% if (typeof errors !=='undefined' && errors.length > 0) { %>
   <div class="alert alert-danger text-center">
-    <% errors.forEach(error=> { %>
-      
-        <% if (error.status) { %>
-          <b>
+    <% errors.forEach(error => { %>
+      <p>
+        <% if (typeof error.status !== 'undefined') { %>
+          <strong>
             <%= error.status %> :
-          </b>
+          </strong>
       <%}%>
-      <% if (error.message) { %>
+      <% if (typeof error.message !== 'undefined') { %>
           <%= error.message %>
       <%}%>
-    </ul>
+      </p>
       <% }); %>
   </div>
 <% } %>
 
 <% if (typeof success !=='undefined' && success.length > 0) { %>
   <div class="alert alert-success text-center">
-    <% success.forEach( message => { %>
+    <% success.forEach( s => { %>
       <ul class="text-center">
-      <%=message %> 
+      <%= s.message %> 
       </ul>
     <% }); %>
   </div>

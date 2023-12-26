@@ -45,9 +45,12 @@ const local_login = new LocalStrategy(
       }
 
       // Create a sanitized user object without the password field
-      const sanitizedUser = { ...user.toObject() }; // Convert Mongoose object to plain JavaScript object
-      delete sanitizedUser.password; // Remove the password field from the sanitized user object
-
+      let sanitizedUser = null;
+      if(user){
+        sanitizedUser = { ...user.toObject() }; // Convert Mongoose object to plain JavaScript object
+        delete sanitizedUser.password; // Remove the password field from the sanitized user object
+      }
+      console.log(sanitizedUser);
       return done(null, sanitizedUser);
     } catch (error) {
       console.log("error");
@@ -65,11 +68,14 @@ const local_register = new LocalStrategy(
   },
   async (req, email, password, done) => {
     try {
+      
       console.log("inside passport strategy: registration")
       const user = await User.findOne({ email });
       
       if (user) {
-        console.log("user already existed!")
+        console.log("user already existed!");
+        const error ={ status : "user exits", message: "User with username or email already exists"};
+        req.flash("validationError1", JSON.stringify(error));
         return done(null, false, { message: 'Email already exists' });
       }
 
@@ -94,9 +100,15 @@ const local_register = new LocalStrategy(
       console.log("new user save in passport session")
      
       // Create a sanitized user object without the password field
-      const sanitizedUser = { ...user.toObject() }; // Convert Mongoose object to plain JavaScript object
-      delete sanitizedUser.password; // Remove the password field from the sanitized user object
+      let sanitizedUser =null;
+      if(user){
+        sanitizedUser = { ...user.toObject() }; // Convert Mongoose object to plain JavaScript object
+        console.log(sanitizedUser);
+        delete sanitizedUser.password; // Remove the password field from the sanitized user object
+      }
 
+      console.log(sanitizedUser);
+      req.flash("success", JSON.stringify( {message: "Registration Successfull"}) );
       return done(null, sanitizedUser); // Return the newly registered user
     } catch (err) {
       console.log(`error: ${err.msg}`);

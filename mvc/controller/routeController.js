@@ -164,6 +164,8 @@ const register = (req, res) => {
 
   // getting message from validation error if any else undefined
   const err = req.flash("validationError");
+  const err1 = req.flash("validationError1");
+  const success = req.flash("success");
 
   let initial_value = {
     firsname: "",
@@ -191,9 +193,36 @@ const register = (req, res) => {
       errors = value.errors;
     }catch(err){}
 
-  // console.log("->",initial_value);
-  const newData = Object.assign({}, data, {formData : initial_value, errors: errors});
-  // console.log(newData);
+    console.log("errors: ", errors);
+    
+    if (err1 !== undefined) {
+      let parsedErr = null;
+        try {
+          parsedErr = JSON.parse(err1);
+        } catch (e) {
+          // Handle JSON parsing error
+        }
+
+        if (parsedErr) {
+          errors = [parsedErr];
+        }
+        
+        console.log("parsedErr: ", parsedErr);
+        console.log("errors: ", errors)
+    }    
+
+    let successData;
+    if (success !== undefined ){
+      try{
+        const data = JSON.parse(success);
+        successData = [data];
+      }catch(e){}
+    }
+
+    console.log("success: ", success);
+    console.log("successData: ", successData);
+
+  const newData = Object.assign({}, data, {formData : initial_value, errors: errors, success: successData });
   return res.status(200).render("register", newData);
 };
 
