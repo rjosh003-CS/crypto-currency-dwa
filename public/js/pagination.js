@@ -38,6 +38,9 @@ searchInput.addEventListener('input', async () => {
 
 
 
+// ------------------ Pagination Control -----------------------------------
+
+
 
 // pagination controller
 const paginationControls = document.getElementById('pagination-controls');
@@ -48,6 +51,7 @@ paginationControls.style.display = 'none';
 const searchButton = document.getElementById('search-button');
 searchButton.addEventListener('click', async () => {
     const searchTerm = searchInput.value.trim();
+    autocompleteResults.innerHTML = "";
     console.log(searchTerm);
 
 try {
